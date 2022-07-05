@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<link href="/css/maininterface/index.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="/js/CMS6_2announcement/main_announcement.js"></script>
+	<script src="https://www.google.com/recaptcha/api.js"></script>
+	<title>i上班公司管理系統</title>
+	<link rel="shortcut icon" href="img/favicon1.ico" type="image/x-icon"/ >
+
+	<style>
+		#login {
+			height: 325px;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="container">
+		<div>
+			<img src="./img/logo.png" alt="" class="logoClass">
+		</div>
+		<div class="row" id="titleImg">
+			<h1 id="titleText">i上班公司管理系統</h1>
+		</div>
+	</div>
+	<div class="container ">
+		<div class="row justify-content-around">
+			<div class="col-3 textDiv">
+				<p id="announcement">
+				<div style="color: darksalmon;position: relative;text-align: center;"><b>公告</b></div>
+				<ul id="mainAnnouncement">
+					<li class="noticeContent" style="list-style-type: none;"></li>
+				</ul>
+				</P>
+			</div>
+
+			<div class="col-4" id="login">
+				<div class="row">
+					<p>登入系統</p>
+					<hr>
+				</div>
+				<div class="row" id="labelEmp">
+					<div class="col-3">
+						<label class="label_input">使用者名稱</label>
+					</div>
+					<div class="col-6">
+						<input type="text" id="userEmp" required />
+					</div>
+				</div>
+				<div class="row mt-2" id="labelPsw">
+					<div class="col-3">
+						<label class="label_input">密碼</label>
+					</div>
+					<div class="col-6">
+						<input type="password" id="userPsw" required />
+					</div>
+				</div>
+				<div id="recaptcha" class="g-recaptcha mt-3" data-callback="onloadCallback"
+					data-sitekey="6LcC_owgAAAAAJSNtB-pCnZHSzIgOy1fQWhoyCtL">
+				</div>
+				<div id="login_control" class="row mt-3">
+					<div id="login_control">
+						<button id="btn_login">登入</button>
+						<a id="forgetPwd">忘記密碼？</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+
+
+	</div>
+
+	<!-- 背景泡泡 -->
+	<ul class="bubble">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+
+
+	<script>
+		var allowLogin = false;
+
+		$("#btn_login").click(function () {
+			if (allowLogin == true) {
+				$(this).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <span >Loading...</span>`);
+				login();
+			} else {
+				alert("請先點選「我不是機器人」")
+			}
+
+		});
+
+		function login() {
+			var inputData = JSON.stringify({
+				empId: $("#userEmp").val(),
+				passwd: $("#userPsw").val()
+			});
+
+			$.ajax({
+				type: "post",
+				url: "/security/login",
+				data: inputData,
+				contentType: 'application/json',
+				success: function (data) {
+					console.log(data);
+					if (data.status == "100") {
+						document.cookie = `cookie1= ${data.token}`;
+						window.location.href = "/CMS_0interface.html";
+					} else if (data.status == "101") {
+						$("#btn_login").html('登入');
+						alert("查無帳號");
+					} else if (data.status == "102") {
+						$("#btn_login").html('登入');
+						alert("密碼錯誤");
+					} else if (data.status == '103'){
+						$("#btn_login").html('登入');
+						alert("該帳號目前關閉中");
+					}
+				}
+			});
+		}
+
+
+
+		$("#forgetPwd").click(function () {
+
+			if (confirm("是否發送驗證信到個人信箱")) {
+
+				var empId = prompt('請輸入你的員工編號');
+				var emailData = JSON.stringify({ empId : empId});
+				$.ajax({
+					type: "post",
+					url: "/security/forgetPasswd",
+					data: emailData ,
+					contentType : 'application/json',
+					success :function(){
+						alert("發送完成，請至信箱查看");
+					}
+				});
+			} else {
+
+			}
+		});
+
+		var onloadCallback = function () {
+			allowLogin = true;
+		};
+	</script>
+
+
+</body>
+
+</html>

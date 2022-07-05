@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- style -->
+    <script src="/jQuery/jquery-3.6.0.js"></script>
+    <!-- <script src="/js/punch/punch.js"></script> -->
+    <link rel="stylesheet" href="/css/maininterface/4.4.1bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/maininterface/nueip_style.min.css" />
+    <link rel="stylesheet" href="/css/maininterface/header.css" />
+    <link rel="stylesheet" href="/css/maininterface/maininterface.css" />
+    <link rel="stylesheet" href="/css/shared/button.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+    <script src="/js/CMS6_2announcement/main_announcement.js"></script>
+    <script src="/js/CMS0viewers/userInfo.js"></script>
+    <script src="/js/CMS0viewers/viewers.js"></script>
+    
+    
+</head>
+
+
+<body class="zh-tw" id="zh-tw">
+    <div class="indexT">
+        <!-- 中間區塊 -->
+        <div class="nup-static-banner" style="height: 180px;">
+            <div class="left-box row no-gutters">
+                <div class="myMail col-1">
+                    <!-- mail未讀提示圓圈 -->
+                    <!-- 之後要判斷 => 小於1時圓圈不顯示，>=1顯示數字 -->
+                    <div class="cycleMessage">1</div>
+                    <!-- myMail trigger modal -->
+                    <div class="myMailDiv" data-bs-toggle="modal" data-bs-target="#staticBackdropMail"><img
+                            class="myMailImg" src="/img/mail.png" width="40px" alt="mail"></div>
+                </div>
+
+                <div class="myName col-2">
+                    <div class="myNameDiv"><img class="myNameImg" id="myNameImg" src="/img/logo.png" alt=""></div>
+
+                    <!-- photo Button trigger modal -->
+                    <div>
+                        <button class="cameraBtn" data-bs-toggle="modal" data-bs-target="#photoModal">
+                            <img src="/img/camera.png" alt="" width="30px" height="25px">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="myNameInfo col-3" style="top: 50px;">
+                    <h5>部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;門：<span id="userApart">請稍等...</span></h5>
+                    <h5>員工編號：<span id="userNumber"></span></h5>
+                    <h5>員工姓名：<span id="userName"></span></h5>
+                </div>
+
+                <div class="myCard col-3" style="top:30px;">
+                    <div class="myTimediv">
+                        <table class="myTimetable" id="punchRecord">
+                        </table>
+                    </div>
+                </div>
+                <div class="myCard col-1" style="top:40px ;">
+                    <!-- 上班打卡鈕 -->
+                    <button id="myCardbtn1" class="myCardbtn" type="button">
+                        <b>上班<br>打卡</b>
+                    </button>
+                </div>
+                <div class="myCard col-1" style="top:40px ;">
+                    <!-- 下班打卡鈕 -->
+                    <button id="myCardbtn2" class="myCardbtn" type="button">
+                        <b>下班<br>打卡</b>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- tour nav (主介面鈕+個人資訊) -->
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                    type="button" role="tab" aria-controls="nav-home" aria-selected="true">功能</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                    type="button" role="tab" aria-controls="nav-profile" aria-selected="false">個人資訊</button>
+            </div>
+        </nav>
+
+        <div class="tab-content" id="nav-tabContent">
+            <!-- 主介面按鈕 -->
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="container" style="width: 700px;">
+                    <div class="items-box row no-gutters">
+                        <div class="item-wrap col-md-4">
+                            <a href="./CMS_1Calendar.html">
+                                <div class="box">
+                                    <div><img class="Img1" src="/img/calendar.png" alt="行事曆"></div>
+                                    <p>行事曆</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item-wrap col-md-4">
+                            <a href="./CMS_2Leaverecorded.html">
+                                <div class="box">
+                                    <div><img class="Img1" src="/img/attendance.png" alt="出勤系統"></div>
+                                    <p>出勤系統</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item-wrap col-md-4">
+                            <a href="./CMS_3Salary.html">
+                                <div class="box">
+                                    <div><img class="Img1" src="/img/paysalary.png" alt="薪資明細查詢"></div>
+                                    <p>薪資明細查詢</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item-wrap col-md-4">
+                            <a href="./CMS_4Order.html">
+                                <div class="box">
+                                    <div><img class="Img1" src="/img/bento.png" alt="訂餐系統"></div>
+                                    <p>點餐系統</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item-wrap col-md-4">
+                            <a href="./CMS_5Staffcontact.html">
+                                <div class="box">
+                                    <div><img class="Img1" src="/img/contact.png" alt="員工通訊錄"></div>
+                                    <p>員工通訊錄</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item-wrap col-md-4" id="AdminUse" style="visibility:hidden;">
+                            <a href="./CMS_6System.html">
+                                <div class="box">
+                                    <div><img class="Img1" src="/img/setup.png" alt="系統管理"></div>
+                                    <p>系統管理</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 個人資訊 -->
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="information">
+                    <p>
+                    <table style="border-collapse:separate; border-spacing:6px 6px;font-size: 15px;">
+                        <tr>
+                            <td><label for="">員工姓名：</label></td>
+                            <td><input type="text" class="inputSize" id="inUserName"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">修改密碼：</label></td>
+                            <td><input type="password" class="inputSize" id="inUserPwd"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">電&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;話：</label></td>
+                            <td><input type="text" class="inputSize" id="inUserTel"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">行動電話：</label></td>
+                            <td><input type="text" class="inputSize" id="inUserPhone"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">E&nbsp;-&nbsp;Mail&nbsp;：</label></td>
+                            <td><input type="email" class="inputSize" id="inUserEmail"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</label></td>
+                            <td><input type="text" class="inputSize" id="inUserAddr"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center;">
+                                <input type="button" value="修改" class="btnStyle"
+                                    onClick="informationBtn()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="button" value="取消" class="btnStyle" onClick="informationCancel()">
+                            </td>
+                        </tr>
+                    </table>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 左下公告 -->
+        <input type="checkbox" id="side-menu-switch"> <!-- 伸縮 -->
+        <div class="side-menu">
+            <!-- 公告右邊按鈕 -->
+            <intput name="result" for="" style="background: white;"></intput>
+            <label for="side-menu-switch">
+                <i class="fas fa-caret-left"></i>
+            </label>
+
+            <!-- 公告標題 -->
+            <div class="announcementText">
+                <h6><i class="fas fa-home">公告</i></h6>
+            </div>
+
+            <!-- 公告內容 -->
+            <div class="announcementDiv">
+                <ul id="mainAnnouncement">
+
+                </ul>
+            </div>
+        </div>
+        <!-- 公告第二層--顯示全部公告內容  -->
+        <dialog id="noticedialog">
+            <div class="modal-header">
+                <h5>公告</h5>
+                <button type="button" class="btn-close" aria-label="Close" onclick="noticedialog.close()"></button>
+            </div>
+            <div class="modal-body" style="height: 350px; overflow-y: auto;">
+                <table class="noticeTable">
+                    <tr>
+                        <th width="15%">主旨：</th>
+                        <td width="85%"><span id="titleText1"></span></td>
+                    </tr>
+                    <tr>
+                        <th>時間：</th>
+                        <td class="noticeline"><span id="startTime"></span></td>
+                    </tr>
+                    <tr>
+                        <th>附件：</th>
+                        <td id="annexTr"><span id="annex"></span></td>
+                    </tr>
+                    <tr>
+                        <th>內容：</th>
+                        <td><span id="contentText"></span></td>
+                    </tr>
+                </table>
+            </div>
+        </dialog>
+        <script>
+            $('.notice').on("click", function () {
+                noticedialog.showModal()
+            })
+        </script>
+
+        <!-- photo Modal -->
+        <div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="photoModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" style="height: 370px;width: 350px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="photoModalLabel">照片上傳</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form id="userPhoto" enctype="multipart/form-data">
+                            <input type="file" onchange="readURL(this)" name="file" targetID="photo_img"
+                                accept="image/gif, image/jpeg, image/png" /><br><br>
+                            <input type="hidden" name="uesrToken">
+                            <div><img id="photo_img" src="/img/spacing.png" /></div>
+                            <button type="submit" class="btn btn-primary fileSend">上傳檔案</button>
+                        </form>
+
+                        <!-- photo JavaScript part -->
+                        <script>
+                            function readURL(input) {
+                                if (input.files && input.files[0]) {
+                                    var imageTagID = input.getAttribute("targetID");
+                                    var reader = new FileReader();
+                                    reader.onload = function (e) {
+                                        var img = document.getElementById(imageTagID);
+                                        img.setAttribute("src", e.target.result)
+                                    }
+                                    reader.readAsDataURL(input.files[0]);
+                                }
+                            }
+                        </script>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 右下角訊息圖示 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ"
+        crossorigin="anonymous"></script>
+    <div>
+        <div class="messageImg" data-bs-toggle="modal" data-bs-target="#exampleModal"></div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" id="messagemodal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">新郵件</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="subject1" class="col-form-label">主旨：</label>
+                            <input type="text" class="form-control" id="subject1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">收件人：</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">訊息:</label>
+                            <textarea class="form-control" id="message-text" style="height: 100px;"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">傳送</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- mail--Modal -->
+    <div class="modal fade" id="staticBackdropMail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" id="mailmodal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabelMail">信箱</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="height:250px; overflow-y:auto">
+                    <!-- ... -->
+                    <table id="mailtable">
+                        <tr id="mailborder">
+                            <th width="20%" style="text-align: center;">讀取訊息</th>
+                            <th width="20%">寄件人</th>
+                            <th width="20%">時間</th>
+                            <th width="30%">主旨</th>
+                            <th width="10%">內容</th>
+                        </tr>
+                        <tr id="mailborder">
+                            <td style="text-align: center;"><input type="checkbox"></td>
+                            <td>XXX</td>
+                            <td>XXX</td>
+                            <td>XXX</td>
+                            <td><button id="mailContentbtn">...</button></td>
+                        </tr>
+                    </table>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">顯示全部</button>
+                    <button type="button" class="btn btn-primary">隱藏已讀</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 信件內容 -->
+    <dialog id="mailContentdialog" style="width: 300px;">
+        <div class="modal-header">
+            <button type="button" class="btn-close" aria-label="Close" onclick="mailContentdialog.close()"></button>
+        </div>
+        <div class="modal-body" style="height: 350px; overflow-y: auto;">
+            <div>
+                信件內容
+
+            </div>
+        </div>
+    </dialog>
+    <script>
+        $('#mailContentbtn').on("click", function () {
+            mailContentdialog.showModal()
+        })
+    </script>
+
+
+    <!-- myCard1 Modal(上班打卡) -->
+    <dialog id="punchdialog">
+        <div id="punchDiv">
+            <iframe src="./CMS_punch.html" style="height: 100%;width:100%;"></iframe>
+        </div>
+    </dialog>
+    <script>
+        $('#myCardbtn1').on("click", function () {
+            punchdialog.showModal();
+        })
+        $('#myCardbtn2').on("click", function () {
+            punchdialog.showModal();
+        })
+    </script>
+
+    </div>
+    <script src="/js/CMS0viewers/punchRecord.js"></script>
+    <script>
+        function getCookie() {
+            var cookie = document.cookie.split('=');
+            return cookie[1].toString();
+        }
+
+        $("#userPhoto").submit(function (e) {
+            e.preventDefault(); // 停止觸發submit
+            console.log("upload");
+            var formData = new FormData($("#userPhoto")[0]);
+            formData.append("userToken", getCookie());
+            $.ajax({
+                type: "POST",
+                url: "/emp/uploadUserPhoto",
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                beforeSend: function () {
+                    //找時間加入等待提示
+                },
+                success: function (data) {
+                    var yes = confirm('大頭照更新完成囉');
+                    document.getElementById('myNameImg').setAttribute('src', `${data.empPhoto}`);
+                    if (yes) {
+                        $(".modal").modal("hide");
+                    } else {
+                        $(".modal").modal("hide");
+                    }
+                },
+                error: function (data) {
+                    alert(data.exception);
+                }
+            });
+        });
+
+    </script>
+        <script src="/js/CMS0viewers/viewers.js"></script>
+    
+
+
+
+</body>
+
+</html>

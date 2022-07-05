@@ -1,0 +1,127 @@
+@import url('https://pro.fontawesome.com/releases/v5.10.0/css/all.css');
+
+* {
+	font-family: 'Noto Sans TC', sans-serif;
+}
+
+/* * define bootstrap 5 columns * */
+.col-xs,
+.col-sm,
+.col-md,
+.col-lg {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+
+/* .col-xs{
+        width: 20%;
+        float: left;
+    }
+     */
+
+
+/* @media (min-width: 768px) {
+    .col-sm-1-7 {
+            width: 20%;
+            float: left;
+        }
+    } */
+@media (min-width: 992px) {
+    .col-md-1-8 {
+        width: 12.5%;
+        float: left;
+    }
+}
+
+/* @media (min-width: 1200px) {
+        .col-lg-1-7 {
+            width: 20%;
+            float: left;
+        }
+    } */
+
+/* <code> */
+table,.textcenter{
+    text-align: center;
+}
+.switch {
+    /*==設定開關鈕的長寬==*/
+    position: relative;
+    width: 65px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.switch-checkbox {
+    position: absolute;
+    display: none;
+}
+
+.switch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.switch-txt {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.2s ease-in 0s;
+}
+
+.switch-txt::before,
+.switch-txt::after {
+    display: block;
+    float: right;
+    width: 50%;
+    font-size: 13px;
+    color: #fff;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+/*==開關鈕底色(開啟時)==*/
+.switch-txt::after {
+    content: attr(turnOn);
+    padding-left: 10px;
+    background: #1ba0ef;
+    color: #fff;
+}
+
+/*開關鈕底色(關閉時)*/
+.switch-txt::before {
+    content: attr(turnOff);
+    padding-right: 10px;
+    background: #eee;
+    color: #ccc;
+    text-align: right;
+}
+
+/*==開關鈕的顏色與大小==*/
+.switch-Round-btn {
+    position: absolute;
+    display: block;
+    width: 26px;
+    height: 26px;
+    margin: 2px;
+    background: #fff;
+    top: 0;
+    bottom: 0;
+    right: 35px;
+    border-radius: 13px;
+    transition: all 0.3s ease-in 0s;
+}
+
+.switch-checkbox:checked+.switch-label .switch-txt {
+    margin-left: 0;
+}
+
+.switch-checkbox:checked+.switch-label .switch-Round-btn {
+    right: 0;
+}
+

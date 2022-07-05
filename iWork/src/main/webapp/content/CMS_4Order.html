@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="/code/jquery-3.6.0.js"></script>
+   <link rel="stylesheet" href="/css/shared/button.css" />
+   <link rel="stylesheet" href="/css/shared/content4_style.css" />
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+      crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+   <script src="/code/bootstrap-5.2.0-beta1-dist/css/bootstrap.css"></script>
+   <script src="/code/bootstrap-5.2.0-beta1-dist/js/bootstrap.bundle.min.js"></script>
+   <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+   <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+   <link rel="stylesheet" href="style.css">
+
+   <title>Orderpage</title>
+
+</head>
+
+<body>
+   <div class="grid-container">
+      <div>
+         <label for="" style="margin-left:23%;"><b>今日餐廳:</b></label>&nbsp;&nbsp;
+         <h3 id="TodayRestaurantName"></h3>
+      </div>
+     
+      <!-- <div>
+         <button type="button" class="function" data-bs-toggle="modal" data-bs-target="#orderSearchModal">訂單紀錄</button>
+      </div> -->
+
+      <input type="checkbox" name="" id="menu_control">
+
+   <div class="header">
+         <label for="menu_control" class="menu_btn">
+            <span>選單</span>
+         </label>
+      <nav>
+         <!-- <type="button" class="function" data-bs-toggle="modal" data-bs-target="#orderSearchModal">訂單紀錄 -->
+         <a class="function" data-bs-toggle="modal" data-bs-target="#orderSearchModal"  href="#modal-body orderSearchDiv">訂單記錄</a>
+
+      </nav>
+   </div>
+
+   </div>
+
+   <!-- 左邊DIV1菜單區 -->
+   <div id="DIV1">
+      <p style="margin-left:20px; margin-top: 10px;"><b>菜單區：</b></p>
+      <div class="menusDiv">
+         <div id="menus" class="container"></div>
+      </div>
+      <!-- 左方DIV1下單btn -->
+      <br>
+      <div>
+         <button type="button" id="addcart" class="btnStyle">加入購物車</button>
+      </div>
+   </div>
+    <!-- 右邊DIV2下單區 -->
+    <div id="DIV2">
+      <p style="margin-left:20px;"><b>購物車下單區：</b></p>
+      <div class="navDiv">
+         <table>
+            <tr>
+               <td width="150px">商品</td>
+               <td width="20%">單價</td>
+               <td width="20%">數量</td>
+               <td width="20%">總計</td>
+               <td width="15%">操作</td>               
+            </tr>
+         </table>
+      </div>
+      <!-- 購物車的東西長在這裡面 -->
+      <div id="app">
+         <div class="container">
+            <div id="orderCar" class="item_container" v-for="(item, index) in itemList" :key="dish.dishIid">
+            </div>
+         </div>
+      </div>
+      <br>
+
+      <div id="submit2">
+         <b><span id="ordersPriceCount">合計：<span></b>
+         <button class="btnStyle btnright" id="orderFinishBtn">我要下單</button>
+      </div>
+   </div>
+
+   <!-- 訂單紀錄 Modal -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ"
+      crossorigin="anonymous"></script>
+   <div class="modal fade" id="orderSearchModal" tabindex="-1" aria-labelledby="orderSearchModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" style="width: 380px;">
+         <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="orderSearchModalLabel">訂單查詢</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+
+            <div class="modal-body orderSearchDiv">
+               <div>
+                  <label><b>日期：</b></label>&nbsp;&nbsp;
+                  <input type="date" id="targetDate" class="inputSize"
+                     style="width: 130px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="submit" value="查詢" class="btnStyle" id="modalFindBtn">
+               </div>
+               <br>
+               <div class="orderRespond">
+                  <div>
+                     <h6><b id="historyOrderRestaurant">餐廳：</b></h6>
+                  </div>
+                  <div class="respondDiv" id="respondDiv">
+                  </div>
+                  <div>
+                     <label><b id="historyOrderCount">小計：NT $$$</b></label>
+                  </div>
+
+               </div>
+            </div>
+
+         </div>
+      </div>
+   </div>
+   <div id="dialog" title="通知">
+      <p>正在送出訂單中 <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span></p>
+   </div>
+
+   <script src="/js/punch/moment.min.js"></script>
+   <script>
+      $(document).ready(getOrdersInCar());
+      function getCookie() {
+         var cookie = document.cookie.split('=');
+         return cookie[1].toString();
+      }
+
+      function adder(a) {
+         var tmp = document.getElementById(`dish_qty${a}`).innerHTML;
+         tmp++;
+         document.getElementById(`dish_qty${a}`).innerHTML = tmp;
+      }
+      function minuser(a) {
+         var tmp = document.getElementById(`dish_qty${a}`).innerHTML;
+         tmp = tmp - 1;
+         if (tmp < 0) { tmp = 0 }
+         document.getElementById(`dish_qty${a}`).innerHTML = tmp;
+      }
+      function addcart() {
+         var jsonObj = [];
+         var tempPrdList = [];
+         for (i = 1; i < 4; i++) {    //數字要改成菜單的數量
+            var allcounter = document.getElementById(`dish_qty${i}`).innerHTML;
+            if (allcounter != 0) {
+               tempPrdList.push(allcounter)
+            }
+         }
+         for (i = 0, j = tempPrdList.length; i < j; i++) {
+            var obj = new Object;
+            obj.dishId = tempPrdList[i];  //key=id   //待處理：資料無法回傳完整
+            jsonObj.push(obj);
+         }
+         console.log(JSON.stringify(jsonObj));
+      }
+
+
+      var menu, dishData, param;
+      var date = new Date();
+      window.onload = function () {
+         // 判斷時間 下午2點到隔天11點前 結果1:顯示菜單
+         if (date.getHours() <= 11 || date.getHours() >= 14) {
+            if (date.getHours() <= 11) {
+               param = JSON.stringify({ "setDate": moment().format('YYYY-MM-DD') });
+            } else {
+               param = JSON.stringify({ "setDate": moment().add(1, 'days').format('YYYY-MM-DD') });
+            }
+            $.ajax({
+               type: "POST",
+               url: "/orderSys/getMenuByDate",
+               data: param,
+               contentType: 'application/json',
+               success: function (testData) {
+                  $("#TodayRestaurantName").html(testData[0].restaurantName);
+
+                  var left_menu = document.getElementById("menus");
+                  dishData = testData;
+                  for (var i = 1; i < testData.length; i++) {
+
+                     menu = document.createElement("div");
+                     menu.setAttribute("class", "menu")
+
+                     menu.innerHTML += `<img src="${testData[i].dishPhoto}" width="110" height="110" alt="${testData[i].dishItem}" title="${testData[i].dishItem}" class="pic row" />`
+                     menu.innerHTML += `<div class="row">`;
+                     menu.innerHTML += `<input id="dish_minus${testData[i].dishId}" type="button" onclick="minuser(${testData[i].dishId})"" value=" - " style="font-size: 20px;" />`;
+                     menu.innerHTML += `<type id="dish_qty${testData[i].dishId}" style="font-size: 15px; margin-left: 15px;margin-right: 15px;">0</type>`;
+                     menu.innerHTML += `<input id="dish_add${testData[i].dishId}" type="button" onclick="adder(${testData[i].dishId})" value=" + " style="font-size: 19px;" /></div>`;
+                     menu.innerHTML += `<p class="row" style="margin-top: 0px; font-size:15px; margin-left: 15px;">${testData[i].dishItem}</p>`;
+                     menu.innerHTML += `<p class="row" style=" margin-top: -15px;font-size:15px; margin-left: 15px;">$${testData[i].dishPrice}</p>`;
+                     left_menu.appendChild(menu);
+                  }
+               }
+            });
+            //時間判斷 結果2
+         } else {
+            //顯示尚未上架 敬請期待
+            alert("商品尚未上架 敬請期待");
+         }
+      };
+
+      $("#addcart").click(function () {
+         var tempData = [];
+         var count;
+         for (var a = 1; a < dishData.length; a++) {
+            var dish_qty = document.getElementById(`dish_qty${dishData[a].dishId}`);
+            if (dish_qty.innerHTML != "0") {
+               console.log(dishData[a].dishItem + "的數量為：" + dish_qty.innerHTML);
+               tempData.push(JSON.parse(`{"dishId" : ${dishData[a].dishId} ,"qty" : ${dish_qty.innerHTML}}`));
+            }
+         }
+
+         if (tempData != 0) {
+            for (var a = 1; a < dishData.length; a++) {
+               document.getElementById(`dish_qty${dishData[a].dishId}`).innerHTML = 0;
+            }
+            tempData.splice(0, 0, { userToken: getCookie() });
+            var sendData = JSON.stringify(tempData);
+            $.ajax({
+               type: "post",
+               url: "/orderSys/saveToDb",
+               data: sendData,
+               contentType: 'application/json',
+               sendData: function () {
+                  $("#dialog").dialog("open");
+                  $("#addcart").attr('disabled', 'disabled');
+                  $("#addcart").css({ "color": "white" });
+               },
+               success: function () {
+
+                  getOrdersInCar();
+                  $("#dialog").dialog("close");
+                  $("#addcart").removeAttr('disabled');
+                  //更新右方購物出畫面
+               }
+            });
+         }
+      })
+      $("#orderFinishBtn").click(orderFinish);
+
+      var allOrdersInCar;
+
+      function getOrdersInCar() {
+         console.log("開始查詢購物車資訊");
+         var date = new Date();
+         var startDate, endDate;
+         if (date.getHours() >= 14) {
+            startDate = moment().format("YYYY-MM-DD 12:00:00");
+            endDate = moment().add(1, 'days').format("YYYY-MM-DD 12:00:00");
+         } else {
+            startDate = moment().add(-1, 'days').format("YYYY-MM-DD 12:00:00");
+            endDate = moment().format("YYYY-MM-DD 12:00:00");
+         }
+         var tokenAndDate = JSON.stringify({
+            "userToken": getCookie(),
+            "startDate": startDate,
+            "endDate": endDate
+         });
+         $.ajax({
+            type: "post",
+            url: "/orderSys/getOrder",
+            data: tokenAndDate,
+            contentType: 'application/json',
+            success: function (orderData) {
+               allOrdersInCar = orderData;
+               updateCarContent(orderData);
+            }
+         });
+      }
+      function updateCarContent(orderData) {
+         var orderRows;
+         var carDiv = document.getElementById("orderCar");
+         var ordersPriceCount = 0;
+         $('#orderCar').empty();
+         $("#ordersPriceCount").text("合計：");
+         for (var i = 0; i < orderData.length; i++) {
+            orderRows = document.createElement("table");
+            orderRows.setAttribute("class", "orderRows");
+            orderRows.innerHTML = `<tr class = "" id="${i}" style="border-bottom:1px solid gray " >
+                                                <td class = "" id="orderId${i}" width="150px" value="${orderData[i].orderId}">${orderData[i].dishItem}</td>
+                                                <td class = "" id="" width="20%">${orderData[i].dishPrice}</td>
+                                                <td class = "" id="" width="20%">${orderData[i].qty}</td> 
+                                                <td class = "" id="" width="20%">${orderData[i].qty * orderData[i].dishPrice}</td>
+                                                <td class = "" id="" width="15%"><button onClick="deleteOrder(${i})" class="deleteBtn"><img src="/img/trash.png" alt="刪除" class="delBtn"></button></td>
+                                          </tr>`;
+            carDiv.appendChild(orderRows);
+            ordersPriceCount += (orderData[i].qty * orderData[i].dishPrice);
+            $("#ordersPriceCount").text("合計：NT" + ordersPriceCount);
+         }
+      }
+
+
+      function deleteOrder(id) {
+         var orderId = document.getElementById(`orderId${id}`).getAttribute('value');
+         var targetData = JSON.stringify({ orderId: orderId });
+         $.ajax({
+            type: "delete",
+            url: "/orderSys/deleteOrderInCar",
+            data: targetData,
+            contentType: 'application/json',
+            success: function () {
+               getOrdersInCar();
+            }
+         });
+      }
+
+      function orderFinish() {
+         var data = [];
+         for (var i = 0; i < allOrdersInCar.length; i++) {
+            data.push({ orderId: allOrdersInCar[i].orderId });
+         }
+         $("#dialog").dialog("open");
+
+         $.ajax({
+            type: "post",
+            url: "/orderSys/changeOrderType",
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            sendData: function () {
+               $("#dialog").dialog("open");
+               $("#orderFinishBtn").attr('disabled', 'disabled');
+               $("#orderFinishBtn").css({ "color": "white" });
+
+            },
+            success: function () {
+               getOrdersInCar();
+               setTimeout((() => $("#dialog").dialog("close")), 2000);
+               $("#orderFinishBtn").removeAttr('disabled');
+            },
+         });
+      }
+
+      function findHistoryOrders() {
+         var date = $("#targetDate").val();
+         startDate = moment(date).add(-1, 'days').format("YYYY-MM-DD 12:00:00");
+         endDate = moment(date).format("YYYY-MM-DD 12:00:00");
+
+         $.ajax({
+            type: "post",
+            url: "/orderSys/getHistoryOrder",
+            data: JSON.stringify({
+               "userToken": getCookie(),
+               "startDate": startDate,
+               "endDate": endDate,
+               "date": date
+            }),
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (data) {
+
+               var foodTable;
+               var historyOrderDiv = document.getElementById("respondDiv");
+               var ordersPriceCount = 0;
+               $('#respondDiv').empty();
+               $("#historyOrderCount").text("小計：NT");
+               $("#historyOrderRestaurant").text("餐廳 : "+data[0].restaurantName);
+               for (var i = 1; i < data.length; i++) {
+                  foodTable = document.createElement("table");
+                  foodTable.setAttribute("class", "myFoodTable");
+                  foodTable.innerHTML = `<tr class="myfoodBorder">
+                                            <td class="foodL">
+                                               <div>${data[i].dishItem}</div>
+                                               <div>備註</div>
+                                            </td>
+                                            <td class="foodR">
+                                               <div>${data[i].dishPrice} NT</div>
+                                               <div>X${data[i].qty}</div>
+                                            </td>
+                                         </tr>`;
+                  historyOrderDiv.appendChild(foodTable);
+
+                  ordersPriceCount += (data[i].dishPrice * data[i].qty);
+                  $("#historyOrderCount").text("小計：NT" + ordersPriceCount);
+               }
+
+            },
+            error: function () {
+               $('#respondDiv').empty();
+               alert("查無資料，請重新選取時間")
+            }
+         });
+      }
+
+      $("#modalFindBtn").click(findHistoryOrders);
+
+         $(function () {
+            $("#dialog").dialog({
+               modal: true,
+               autoOpen: false,
+               closeOnEscape: false
+            });
+         });
+
+   </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+.resDiv{
+    width: 80%;
+    margin: auto;
+}
+.selectDiv{
+    width: 80%;
+    float:left;
+}
+
+.uploadbtn{
+    width: 20%;
+    float:left;
+}
+
+.resimgDiv{
+    width: 90%;
+    height: 350px;
+    background-color: rgba(248, 242, 242, 0.615);
+}
+
+.resimg{
+    height: 320px;
+    overflow-y: auto;
+    word-wrap:break-word;
+}
+
+.sendbtn{
+    position: absolute;
+    right: 250px;
+}
+
+/* 上傳菜單彈跳視窗 */
+#dishdialog{
+    width: 300px; 
+    height: 200px; 
+    overflow-y: hidden ;
+    overflow-x: hidden;
+    border: none;
+    margin: auto;
+    padding: auto;
+}
+
+/* 上傳餐廳彈跳視窗 */
+#restaurantdialog{
+    width: 300px; 
+    height: 200px; 
+    overflow-y: hidden ;
+    overflow-x: hidden;
+    border: none;
+    margin: auto;
+    padding: auto;
+}

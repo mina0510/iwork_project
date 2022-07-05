@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="/jQuery/jquery-3.6.0.js"></script>
+    <!-- style -->
+    <link rel="stylesheet" href="/css/shared/button.css" />
+    <link rel="stylesheet" href="/css/shared/background.css" />
+    <link rel="stylesheet" href="/css/shared/content2_style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+    <!-- 修改、刪除紐前面圖式 -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <script src="/js/CMS2attendance/leaves.js"></script>
+    <script src="/js/CMS2attendance/admin.js"></script>
+    <script src="/js/punch/moment.min.js"></script>
+</head>
+
+
+<body>
+    <div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">出勤/請假紀錄</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="./CMS_2_2.html">申請表單</a>
+            </li>
+            <li class="nav-item" id="disabled" style="visibility: hidden;">
+                <a class="nav-link" aria-current="page" href="./CMS_2_3.html">審核</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 出勤/請假紀錄 -->
+    <div class="staffAll">
+        <br>
+        <div class="staffSearch">
+            <label><b>類別：</b></label>&nbsp;&nbsp;
+            <select id="leaves" value="">
+                <option value="" class="vacation"></option>
+            </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="icon-input-btn">
+                <i class="glyphicon glyphicon-search"></i>
+                <input type="button" value="查詢" class="btnStyle" id="leaveEditBtn1"></input>
+            </span>
+        </div>
+
+        <br>
+
+        <div class="staffDiv">
+            <table class="staffTable" id="attendanceTable1">
+                <tr>
+                    <th class="tableStyle" width="10%">出勤/假單編號</th>
+                    <th class="tableStyle" width="10%">申請類別</th>
+                    <th class="tableStyle" width="17%">起訖日期</th>
+                    <th class="tableStyle" width="8%">時數</th>
+                    <th class="tableStyle" width="15%">狀態</th>
+                    <!-- 申請單成立、申請人審核通過，部門主管審核中，部門主管審核完成，會計審核中，會計審核完成 -->
+                    <th class="tableStyle" width="30%">功能</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+
+    <!-- 審核歷程 -->
+    <dialog id="reviewdialog">
+        <div class="modal-header">
+            <h4><b>審核歷程</b></h4>
+            <button type="button" class="btn-close" aria-label="Close" onclick="reviewdialog.close()"></button>
+        </div>
+        <div class="modal-body reviewbody">
+            <table>
+                <tr>
+                    <th class="processTable" width="10%">順序</th>
+                    <th class="processTable" width="20%">簽核</th>
+                    <th class="processTable" width="20%">簽核狀態</th>
+                </tr>
+                <tr>
+                    <td class="processTable">1</td>
+                    <td class="processTable">申請人審核</td>
+                    <td class="processTable"><span id="attendanceDate"></span></td>
+                </tr>
+                <tr>
+                    <td class="processTable">2</td>
+                    <td class="processTable"><span id="approver1"></span></td>
+                    <td class="processTable"><span id="dateApproved1"></span></td>
+                </tr>
+                <tr>
+                    <td class="processTable">3</td>
+                    <td class="processTable"><span id="approver2"></span></td>
+                    <td class="processTable"><span id="dateApproved2"></span></td>
+                </tr>
+            </table>
+        </div>
+    </dialog>
+
+    <script>
+        $('.review').on("click", function () {
+            reviewdialog.showModal()
+        })
+    </script>
+
+    <script src="/js/CMS2attendance/attendance.js"></script>
+</body>
+
+</html>

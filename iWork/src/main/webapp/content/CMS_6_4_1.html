@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="/jQuery/jquery-3.6.0.js"></script>
+    <!-- style -->
+    <link rel="stylesheet" href="/css/shared/button.css" />
+    <link rel="stylesheet" href="/css/shared/background.css" />
+    <link rel="stylesheet" href="/css/shared/content6_style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <!-- 修改、刪除紐前面圖式 -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+</head>
+
+
+<body class="zh-tw">
+    <div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">帳號管理</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="./CMS_6System.html">帳號權限管理</a></li>
+                    <li><a class="dropdown-item" href="./CMS_6_1_2.html">新增帳號</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">公告</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="./CMS_6_2_1.html">公告紀錄</a></li>
+                    <li><a class="dropdown-item" href="./CMS_6_2_2.html">新增公告</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="./CMS_6_3_1.html">推播</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./CMS_6_4_1.html">出勤管理</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">點餐系統</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="./CMS_6_5_1.html">點餐紀錄</a></li>
+                    <li><a class="dropdown-item" href="./CMS_6_5_2.html">設定餐廳</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 出勤管理-層級紀錄 -->
+    <div class="staffAll">
+        <br>
+        <div class="staffDiv">
+            <table class="levelTable" id="leavelRecord">
+                <tr>
+                    <th class="tableStyle" width="5%">No.</th>
+                    <th class="tableStyle" width="19%">部門</th>
+                    <th class="tableStyle" width="19%">第一審核人員</th>
+                    <th class="tableStyle" width="19%">第二審核人員</th>
+                    <th class="tableStyle" width="19%">功能</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <button id="addadd" class="btnStyle" style="position:fixed;top: 50px;left: 20px;">新增</button>
+    <!-- adddialog -->
+    <div id="changeApart"
+        style="width:250px;height: 250px; visibility:hidden ;position: fixed;top: 120px;left: 400px;border: 3px solid black;background-color: white; text-align: center;">
+        <div style="margin: 30px;height: 200px;">
+            <iframe src="./CMS_6_4_2.html" style="height: 100%;width:100%;"></iframe>
+        </div>
+    </div>
+    <script>
+        $("#addadd").on("click", function () {
+            document.getElementById("changeApart").style.visibility = "visible";
+        })
+    </script>
+
+
+    <div id="changeR"
+        style="width:250px;height: 250px; visibility:hidden ;position: fixed;top: 120px;left: 400px;border: 3px solid black;background-color: white;">
+        <div class="staffAll">
+            <div style="margin: 30px;">
+                <div>
+                    <!-- <input id="approvalsetid"> -->
+                    <label
+                        for=""><b>部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;門：</b></label>&nbsp;&nbsp;&nbsp;
+                    <select id="aparts">
+                        <option></option>
+                    </select>
+                </div>
+                <br>
+                <div>
+                    <label for=""><b>第一審核人員：</b></label>&nbsp;&nbsp;&nbsp; <select name="" id="reviewerone">
+                        <option></option>
+                    </select>
+                </div>
+                <br>
+                <div>
+                    <label for=""><b>第二審核人員：</b></label>&nbsp;&nbsp;&nbsp; <select name="" id="reviewertwo">
+                        <option></option>
+                    </select>
+                </div>
+                <br>
+                <div>
+                    <input type="button" value="確定" class="btnStyle"
+                        id="aaa"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" value="取消" id="cancelbtn" class="btnStyle"></input>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#cancelbtn").on("click", function () {
+            var yes = confirm("你確定取消嗎?");
+            if (yes) {
+                document.getElementById("changeR").style.visibility = "hidden";
+            } else {
+                console.log("取消")
+            }
+        })
+    </script>
+
+    <script>
+        // 查詢
+        var approvalList = [];
+        $(function () {
+            $.ajax({
+                url: "http://localhost:8080/Approvalset/find/",
+                type: "GET",
+                success: function (data) {
+                    var i = 1;
+                    $.each(data, function () {
+                        var approvalsetrecord =
+                            $(`<tr class="staffWord" id="${this.approvalSetId}">
+						<td class="tableStyle"> ${i} </td>
+                    	<td class="tableStyle"> ${this.aparts.apart}</td>
+                    	<td class="tableStyle">${this.employees.empName} </td>
+                    	<td class="tableStyle"> ${this.employee.empName} </td>
+                    	<td class="tableStyle">
+                        	<span class="icon-input-btn">
+                            	<i class="glyphicon glyphicon-pencil"></i>
+                            	<input type="button" value="修改" class="function" onClick="editbtn( ${i})"; />
+                        	</span>&nbsp;&nbsp;
+                        	<span class="icon-input-btn">
+                            	<i class="glyphicon glyphicon-trash"></i>
+                            	<input type="button" value="刪除" class="function" onClick="deletebtn( ${i})"/>
+                        	</span>&nbsp;&nbsp;
+                    	</td>
+                	</tr>`);
+                        approvalsetrecord.appendTo("#leavelRecord");
+                        approvalList[i - 1] = this.aparts.apartId;
+                        i++;
+                    })
+                }
+            })
+        })
+
+        // 修改
+        function editbtn(i) {
+            var findId = JSON.stringify({
+                approvalSetId: document.getElementsByTagName("tr")[i].getAttribute('id')
+            });
+            $(function () {
+                $.ajax({
+                    url: "http://localhost:8080/Approval/dataresponse/",
+                    type: "POST",
+                    data: findId,
+                    contentType: "application/json",
+                    success: function (data) {
+                        $('#aparts').find(`option[value=${data.apartId}]`).prop('selected', true);  //可以抓
+                        $('#aparts').prop('disabled', true); //可以鎖
+                        staffOne();
+                        staffTwo();
+
+                        // 第一審核人員
+                        function staffOne() {
+                            var selectaparts = $("#aparts").find("option:selected").val();
+                            if (selectaparts != 0) {
+                                $("#reviewerone").empty().append("<option></option>");
+                                $("#reviewertwo").empty().append("<option></option>");
+                                $.ajax({
+                                    url: "http://localhost:8080/setAdm/",
+                                    type: "GET",
+                                    success: function (data) {
+                                        $.each(data, function () {
+                                            if (selectaparts == this.aparts.apartId && (this.adm) == "admin") {
+                                                var option1 = $("<option value=" + this.empId + ">" + this.empName + "</option>");
+                                                option1.appendTo("#reviewerone");
+                                            }
+                                        })
+                                    }
+                                })
+                            } else {
+                                $("#reviewerone").empty().append("<option></option>");
+                                $("#reviewertwo").empty().append("<option></option>");
+                            }
+                        }
+
+                        // 第二審核人員
+                        function staffTwo() {
+                            var selectaparts = $("#aparts").find("option:selected").val();
+                            if (selectaparts != 0) {
+                                $("#reviewerone").empty().append("<option></option>");
+                                $("#reviewertwo").empty().append("<option></option>");
+                                $.ajax({
+                                    url: "http://localhost:8080/setAdm/",
+                                    type: "GET",
+                                    success: function (data) {
+                                        $.each(data, function () {
+                                            if (this.aparts.apartId == "1" || this.aparts.apartId == "2") {
+                                                if ((this.adm) == "admin") {
+                                                    var option2 = $("<option value=" + this.empId + ">" + this.empName + "</option>");
+                                                    option2.appendTo("#reviewertwo");
+
+                                                }
+                                            }
+                                        })
+                                    }
+                                })
+                            } else {
+                                $("#reviewerone").empty().append("<option></option>");
+                                $("#reviewertwo").empty().append("<option></option>");
+                            }
+                        }
+
+                        document.getElementById("changeR").style.visibility = "visible";
+
+                        $("#aaa").on("click", function () {
+                            var editSet = JSON.stringify([{
+                                approvalSetId: document.getElementsByTagName("tr")[i].getAttribute('id'),
+                                fisrtApproval: $("#reviewerone").find("option:selected").val(),
+                                secondApproval: $("#reviewertwo").find("option:selected").val()
+                            }]);
+                            console.log(editSet);
+                            $.ajax({
+                                url: "http://localhost:8080/Approvalset/update/",
+                                type: "PUT",
+                                data: editSet,
+                                contentType: "application/json",
+                                success: function () {
+                                    console.log(editSet);
+                                    if (confirm("修改成功")) {
+                                        window.location.href = './CMS_6_4_1.html';
+                                    }
+                                }
+                            })
+                        })
+                    }
+                })
+            })
+
+        }
+
+        // 刪除
+        function deletebtn(i) {
+            var deleteSet = JSON.stringify([{
+                approvalSetId: document.getElementsByTagName("tr")[i].getAttribute('id')
+            }]);
+
+            $.ajax({
+                url: "http://localhost:8080/Approvalset/delete/",
+                type: "DELETE",
+                data: deleteSet,
+                contentType: "application/json",
+                success: function () {
+                    if (confirm("刪除成功")) {
+                        window.location.href = './CMS_6_4_1.html';
+                    }
+                }
+            })
+        }
+
+    </script>
+    <script src="/js/apart/apart.js"></script>
+    <script src="/js/CMS6_4approvalset/reviewer.js"></script>
+
+</body>
+
+</html>

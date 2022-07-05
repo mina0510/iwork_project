@@ -1,0 +1,38 @@
+@import url('https://pro.fontawesome.com/releases/v5.10.0/css/all.css');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+/* 消除底線 */
+a {
+    text-decoration: none !important;
+}
+
+header{
+    position: fixed;
+    height: 42px;
+    align-items: center;
+}
+
+main{
+    position: relative;
+    padding-top: 43px;
+    padding-bottom: 15px;
+}
+
+/* footer */
+footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+

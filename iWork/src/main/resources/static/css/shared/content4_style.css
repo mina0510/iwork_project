@@ -1,0 +1,230 @@
+.grid-container > div {
+    margin: 10px;
+}
+
+.grid-container {
+    /* 改變指定元素的顯示方式 */
+    display: grid;
+    /* 指定有多少欄*/
+    grid-template-columns: 50% 50%;
+}
+
+
+#DIV1 {
+    width: 100%;
+    height: 450px;
+    border-radius: 20px;
+    background-color: #e2fdf0bb;
+    
+}
+
+#DIV2 {
+    width: 100%;
+    height: 450px;
+    border-radius: 20px;
+    background-color: #fffaf3;
+
+}
+
+.menusDiv{
+    height: 350px;
+    overflow-y: auto;
+}
+
+#app{
+    height: 300px;
+    overflow-y: auto;
+}
+
+#menus {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.menu {
+    margin: 0px 10px;
+}
+
+.btnStyle{
+    position: relative;
+    float: right; 
+}
+.btnright{
+    position: relative;
+    float: right;
+}
+
+.item_header {
+    display: flex;
+    width: auto;
+    margin: 0 auto;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 10px;
+    /*框框：圓弧*/
+    padding-left: 30px;
+    /*body 與外框距離*/
+}
+
+.item_header div {
+    width: 200px;
+    line-height: 50px;
+}
+
+
+/* <!-- 訂單紀錄 Modal --> */
+    .nav_order{
+        height: 30px;
+        right: 10px;      
+    }
+    .orderSearchDiv {
+        height: 430px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .orderRespond {
+        height: 300px;
+        background-color: #e2fdf0bb;
+    }
+
+    .respondDiv {
+        height: 240px;
+        overflow-y: auto;
+    }
+
+    .myfoodDiv {
+        height: 340px;
+        overflow-y: auto;
+    }
+
+    .myfoodTable {
+        width: 95%;
+    }
+
+    .myfoodBorder {
+        border-bottom: 2px solid black;
+    }
+
+    .foodR {
+        width: 80px;
+        text-align: right;
+    }
+
+    .foodL{
+        width: 180px;
+        text-align: left;
+    }
+
+    .delBtn{
+        width: 30px;
+    }
+
+    .deleteBtn{
+        border: none;
+        background-color: transparent;
+    }
+
+    .navDiv{
+        margin: 10px;
+        text-align: left;
+        background-color: #fff;
+    }
+
+    /* 選單樣式 */
+    *{
+        margin:0;
+        padding:0;
+        list-style:none;
+     }
+     #menu_control{
+        position: absolute;
+        z-index: -2;
+        opacity: 0;
+     }
+     .menu_btn{
+        width: 30px;
+        height: 30px;
+        background-color: #a2c151;
+        display: block;
+        position:absolute;
+        top: 18px;
+        right: 10px;
+     }
+     .menu_btn span{
+        opacity: 0; 
+        width: 1px;
+        height: 1px;
+        display: block;
+        overflow: hidden;
+     }
+     .menu_btn::before{  /*位阻*/
+        content: '';
+        position: absolute;
+        height: 2px;
+        left: 2px;
+        width: 24px;
+        background-color: #fff;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        box-shadow:0px 8px 0px #fff,
+                   0px -8px 0px #fff;
+     }
+     /*下方選單區*/
+     nav{   
+        width: 30%;
+        height: 300px;
+        background-color: #a2c151;
+        position: absolute;
+        top:50px;
+        right: -31%;
+        transition: .1s;
+     }
+      nav a{  /*圖片連結*/
+        display: block;
+        text-decoration: none;
+        color: #fff;
+        padding: 10px 20px;
+        border-bottom: 1px solid #fff;
+     }
+     #menu_control:checked ~ .header nav{
+        right: 0;
+     }
+
+    /*桌機、平板視覺*/
+    @media screen and (min-width: 768px){ 
+        .menu_btn{display: none;}  /*選單消失*/
+        .header{
+            display: flex;
+            justify-content: space-between;
+        }
+        nav{
+            position: relative;
+            right: 0;
+            display: flex;
+            width: auto;
+            height: auto;
+        }
+        #DIV1 {
+            width: 50%;
+            height: 450px;
+            border-radius: 20px;
+            float: left;
+            background-color: #e2fdf0bb;
+            
+        }
+        #DIV2{
+            width: 50%;
+            height: 450px;
+            border-radius: 20px;
+            float: right;
+            background-color: #fffaf3;
+        }
+        a{
+            position: absolute;
+            top: -50px;
+            right: -100px;
+        }
+        
+    }

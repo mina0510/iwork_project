@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/maininterface/punch.css" rel="stylesheet">
+</head>
+
+<body onload="ShowTime()">
+
+
+	<div class="content">
+		<div class="header container  text-center">
+			<div class="col-12">
+				<h5 class=" modal-title" id="staticBackdropLabel">打卡時間</h5>
+				<h6 id="showbox"></h6>
+			</div>
+		</div>
+		<div class="container">
+			<div id="siteMap" class="siteMap "></div>
+		</div>
+		<br>
+		<div class="footer">
+			<div class="CancerDiv ">
+				<button id="punchCancer" type="button" class="btn btn-secondary ">關閉</button>&nbsp;&nbsp;
+			</div>
+			<div class="OKDiv">
+				<button id="punchOK" type="button" class="btn btn-primary" value="null">打卡</button>&nbsp;&nbsp;
+			</div>
+		</div>
+	</div>
+
+	<script src="/jQuery/jquery-3.6.0.js"></script>
+	<!-- 打卡 -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8gihp9ofr1QTDBTNKMxMMpfOcZiceLs4&callback=initMap&v=weekly"
+		async defer></script>
+	<script src="/js/punch/punch.js"></script>
+	<script src="/js/punch/moment.min.js"></script>
+
+
+</body>
+
+</html>

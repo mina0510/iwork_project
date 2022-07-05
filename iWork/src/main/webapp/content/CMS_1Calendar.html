@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang='zh-tw'>
+    <head>
+        <meta charset='utf-8' />
+        <link href='/css/calendar_css/main.css' rel='stylesheet' />
+        <script src='/js/calendar_js/main.js'></script>
+        <!-- 抓取語言，轉換zh-tw-->
+        <script src="/js/calendar_js/locales-all.js"></script>
+        <script src="/js/calendar_js/jquery-3.6.0.js"></script>
+        <link href="/css/calendar_css/style.css" rel='stylesheet' />
+        <link href="/css/calendar_css/dialog.css" rel='stylesheet' />
+     	<link href="/css/calendar_css/clendar_button.css" rel='stylesheet' />
+        <script src="/js/punch/moment.min.js"></script>
+        <script src="/js/calendar_js/calendar.js"></script>
+    </head>
+    <body>
+        <div id='wrap'>
+            <div id='external-events'>
+                <h4>我的日曆</h4>
+            
+                <div id='external-events-list'>
+                    <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event' style="background-color:steelblue;" >
+                    <div class='fc-event-main'>個人</div>
+                    </div>
+                    <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event' style="background-color:mediumseagreen;">
+                    <div class='fc-event-main'>部門</div>
+                    </div>
+                    <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event' style="background-color:palevioletred;">
+                    <div class='fc-event-main'>公司</div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        
+            <div class="container">
+                <div id='calendar'></div>
+            </div>
+        
+        </div>
+
+        <dialog id="newEvents">
+            <form>
+                <table>
+                    <tr>
+                        <td style="text-align:right;" colspan="2">
+                            <input type="text" id="calendarid" hidden>
+                            <input type="button" class="pencilBtn" id="updateData">
+                            <input type="button" class="trashBtn" id="delete">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>事件主旨</label></td>
+                        <td><input type="text" id="eventTitle"></td>
+                    </tr>
+                    <tr>
+                        <td><label>起始日期時間</label></td>
+                        <td><input type="datetime-local" id="start"></td>
+                    </tr>
+                    <tr>
+                        <td><label>結束日期時間</label></td>
+                        <td><input type="datetime-local" id="end"></td>
+                    </tr>
+                    <tr>
+                        <td><label>事件類別</label></td>
+                        <td><input type="radio" name="eventType" id="person" value="1">個人
+                            <input type="radio" name="eventType" id="depart" value="2">部門
+                            <input type="radio" name="eventType" id="company" value="3">公司
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>全天</label></td>
+                        <td><input type="checkbox" id="allDay"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;" colspan="2">
+                            <input type="button" value="確定" id = "submit" class="btn btn-primary">
+                            <input type="button" value="取消" id = "cancel" class="btn btn-primary" >
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </dialog>
+        
+    </body>
+</html>

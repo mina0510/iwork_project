@@ -1,0 +1,11 @@
+.siteMap {
+    width: 100% ;
+    height: 300px;
+    background-color: azure;
+}
+.CancerDiv{
+    float:right;
+}
+.OKDiv {
+    float:right;
+}

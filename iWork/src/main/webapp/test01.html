@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="/js/jquery.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="/jQuery/jquery-3.6.0.js"></script>
+
+
+<title>Insert title here</title>
+	<style>
+	    .siteMap {
+      width: 100% ;
+      height: 300px;
+      background-color: azure;
+    }
+	</style>
+
+</head>
+<body onload="ShowTime()">
+<button onclick="mytest()">mytest</button>
+
+跳轉成功
+<input type="button" value="查詢cookie" onclick="findCookie()" />
+<input type="button" value="清除cookie" onclick="deleteCookie()" />
+<input type="button" value="顯示cookie" onclick="displayCookie()" />
+<br>
+<p>cookie 顯示</p>
+
+<br>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary myPunch" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> 打卡 </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header container  text-center">
+          <div class="col-12">
+            <h5 class=" modal-title" id="staticBackdropLabel" >打卡時間</h5>
+            <h6 id="showbox"></h6>
+          </div>
+        </div>
+        <div class="container">
+            <div id="siteMap" class="siteMap "></div>
+        </div>
+        <div class="modal-footer container">
+          <div class="col-2">
+            <button id="punchCancer" type="button" class="btn btn-secondary " data-bs-dismiss="modal">關閉</button>
+          </div>
+          <div class="col-8 ">
+            <button id="punchOK" type="button" class="btn btn-primary">打卡</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/js/jquery.toast.js"></script>
+
+<script>
+
+
+    function findCookie(){
+        console.log("ok");
+        console.log(document.cookie);
+    }
+
+    //用於登出
+    function deleteCookie(){
+        console.log("delete");
+        var cookies = document.cookie.split(";");
+             for (var i = 0; i < cookies.length; i++) {
+                 var cookie = cookies[i];
+                 var eqPos = cookie.indexOf("=");
+                 var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                 document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+             }
+    }
+    function displayCookie(){
+        var cookieObj = {};
+        var cookie = document.cookie.split('=');
+        cookieObj[cookie[0]] = cookie[1];
+        console.log(cookieObj);
+        $( "p" ).append("<br>"+cookie[1].toString());
+    }
+    function getCookie(){
+        var cookie = document.cookie.split('=');
+        return cookie[1].toString();
+    }
+    
+ 	$(".displayPunch").click(function () {
+        $("#newsModal").modal( { backdrop: "static" } );
+     });
+    
+</script>
+<!-- 打卡 -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8gihp9ofr1QTDBTNKMxMMpfOcZiceLs4&callback=initMap&v=weekly" async defer></script>
+<script type="text/javascript">
+  
+  $( document ).ready(function() {
+    if(document.cookie==""){
+      alert("請先登入");
+      window.location.href="/index.html";
+    };
+    var usertoken = JSON.stringify([{
+				usertoken: getCookie()
+			}]);
+    $.ajax({
+      type: "post",
+			url: "http://localhost:8080/loginAction/1",
+			data: usertoken,
+			contentType: 'application/json',
+			success: function (data) {
+        console.log(data);
+        if(data.state=='201'){
+          window.location.href="/index.html";
+        }
+			}
+    })
+  });
+  $("#myPunch").click(getMyLocation());
+  $("#punchOK").click(function(){
+    
+    navigator.geolocation.getCurrentPosition(function(position){
+      let date = new Date();
+      var nowData = date.toLocaleString().split(" ")[0];
+      var nowTime = date.toLocaleString().split(" ")[1];
+      console.log(date);
+
+      alert("token:"+getCookie()+"\n"+
+            "位置："+position.coords.latitude+"  "+position.coords.longitude+"\n"+
+            "時間："+nowData+" "+nowTime);
+    })
+    $(".modal").modal("hide");
+  })
+  //取得位置與顯示googleMap
+  function getMyLocation(){
+    // window.initMap=initMap;
+    var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+      };
+
+    function success(pos) {
+
+      var crd = pos.coords;
+
+      console.log('Your current position is:');
+      console.log('Latitude : ' + crd.latitude);
+      console.log('Longitude: ' + crd.longitude);
+      console.log('More or less ' + crd.accuracy + ' meters.');
+
+      
+      initMap(crd.latitude, crd.longitude);
+      getDistance(crd.latitude, crd.longitude);    
+
+
+    };
+
+    function error(err) {
+      console.warn('ERROR(' + err.code + '): ' + err.message);
+    };
+    // navigator.geolocation.getCurrentPosition(success, error, options);
+
+    function initMap(myLat, myLng) {
+      var myLocation = {
+        lat: myLat,
+        lng: myLng
+      };
+      map = new google.maps.Map(document.getElementById("siteMap"), {
+        //設置地圖樣式
+        center: myLocation,
+        zoom: 15,
+        mapTypeId: 'terrain',
+        scrollwheel:false,
+        mapTypeControl: false,
+        zoomControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        rotateControl: false,
+        fullscreenControl: false
+      });
+      // Mark位置
+      var marker = new google.maps.Marker({
+        position: myLocation,
+        map: map
+      });
+      var myRangeLocation = {
+        lat: myLat-0.0035,
+        lng: myLng
+      };
+      var markerRange = new google.maps.Marker({
+        position:myRangeLocation,
+        icon:"/img/MarkRange.png",
+        map: map
+      });
+
+    }
+
+  }
+  //顯示當前時間
+  function ShowTime() {
+            var NowDate = new Date();
+            var yy = NowDate.getFullYear();
+            var mm = ('0' + (NowDate.getMonth() + 1)).slice(-2);
+            var dd = ('0' + NowDate.getDate()).slice(-2);
+            var h = ('0' + NowDate.getHours()).slice(-2);
+            var m = ('0' + NowDate.getMinutes()).slice(-2);
+            var s = ('0' + NowDate.getSeconds()).slice(-2);
+            document.getElementById('showbox').innerHTML = yy + '年' + mm + '月' + dd + '日' + '   ' + h + ':' + m + ':' + s;
+            setTimeout('ShowTime()', 1000);
+        }
+  //計算googleMap 打卡點與公司的距離
+  function getDistance(myLat, myLng){
+    var origin1 = new google.maps.LatLng( 24.15062949399325, 120.65117611577809); // 公司位置
+    var myLocation = new google.maps.LatLng(myLat, myLng); // 打卡位置
+    var service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix(
+    {
+    origins: [origin1],
+    destinations: [myLocation],
+    travelMode: 'WALKING', // 交通方式：BICYCLING(自行車)、DRIVING(開車，預設)、TRANSIT(大眾運輸)、WALKING(走路)
+    unitSystem: google.maps.UnitSystem.METRIC, // 單位 METRIC(公里，預設)、IMPERIAL(哩)
+    }, function(response, status) {
+     if (status !== google.maps.DistanceMatrixStatus.OK) {
+       window.alert('Error was' + status);
+     } else {
+       console.log(response.rows[0].elements[0].distance);
+     }
+
+    });
+ 
+  }
+
+  function mytest(){
+    console.log("ok");
+    $.ajax({
+      type : "post",
+      url: "http://localhost:8080/mytest",
+			data: [{"test" : 11}],
+			contentType: 'application/json',
+
+    })
+  }
+
+
+
+</script>
+
+
+</body>
+</html>

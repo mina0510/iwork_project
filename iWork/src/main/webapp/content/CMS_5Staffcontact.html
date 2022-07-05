@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="/jQuery/jquery-3.6.0.js"></script>
+    <!-- style -->
+    <link rel="stylesheet" href="/css/shared/button.css" />
+    <link rel="stylesheet" href="/css/shared/background.css" />
+    <link rel="stylesheet" href="/css/shared/content2_style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <!-- 修改、刪除紐前面圖式 -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+
+
+</head>
+
+<body class="zh-tw">
+
+    <div class="staffAll">
+        <br>
+        <div class="staffSearch">
+            <div>
+                <label for=""><b>姓名：</b></label>&nbsp;&nbsp;<input type="search" class="inputSize" id="empNameIn">
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div>
+                <label for=""><b>部門：</b></label>&nbsp;&nbsp;
+                <select name="" id="aparts" value="">
+                    <option value=""></option>
+                </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="icon-input-btn">
+                    <i class="glyphicon glyphicon-search"></i>
+                    <input type="button" value="查詢" class="btnStyle" id="staffSearchbtn"></input>
+                </span>
+            </div>
+        </div>
+        <br>
+        <div class="staffDiv">
+            <table class="staffTable" id="staffRecord">
+                <tr>
+                    <th class="tableStyle" width="5%">NO.</th>
+                    <th class="tableStyle" width="10%">部門</th>
+                    <th class="tableStyle" width="10%">姓名</th>
+                    <th class="tableStyle" width="10%">電話</th>
+                    <th class="tableStyle" width="15%">手機</th>
+                    <th class="tableStyle" width="20%">E-Mail</th>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+    <script src="/js/apart/apart.js"></script>
+    <script src="/js/CMS5staff/staff.js"></script>
+</body>
+
+</html>

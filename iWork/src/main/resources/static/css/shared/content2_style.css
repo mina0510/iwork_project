@@ -1,0 +1,75 @@
+/* -----------------CMS_2Leaverecorded----------------- */
+
+/* 2_1,2_2,2_3,2_4,CMS_5Staffcontact */
+.staffAll {
+    position: relative;
+}
+
+/* 2_1,2_3,CMS_5Staffcontact */
+.staffSearch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 2_1,2_3,CMS_5Staffcontact */
+.staffDiv {
+    width: 100%;
+    border-collapse: collapse;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 2_1,2_3,CMS_5Staffcontact */
+.staffTable {
+    width: 90%;
+    word-wrap: break-word;
+    /*自動斷行*/
+    table-layout: fixed;
+}
+
+/* 2_1,2_3,CMS_5Staffcontact */
+.tableStyle {
+    border: 1px solid black;
+    text-align: center;
+    height: 30px;
+}
+
+/* 簽核流程table */
+/* 2_1 */
+.processTable {
+    border-bottom: 0.5px solid black;
+    text-align: center;
+}
+
+/* 審核歷程彈跳視窗dialog */
+/* 2_1 */
+#reviewdialog {
+    position: relative;
+    margin: auto;
+    border: 2px solid;
+    border-radius: 9px;
+    width: 300px;
+}
+
+/* 2_1 */
+.reviewbody {
+    height: 300px;
+    overflow-y: auto;
+}
+
+/* -----------------CMS_2_2----------------- */
+/* 申請表單 */
+/* 2_2,2_4 */
+.application {
+    position: absolute;
+    left: 35%;
+}
+
+/* -----------------CMS_2_3----------------- */
+
+
+
+/* -----------------CMS_2_4----------------- */
+

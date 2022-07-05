@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/jQuery/jquery-3.6.0.js"></script>
+
+</head>
+<body>
+<button onclick="mytest()">mytest</button>
+<script>
+
+  var data1 = JSON.stringify([{"test" : 11},{"test" : 13}]);
+  var data2 = JSON.stringify({"test" : 11 , "haha" : "aa"});
+  var data3 = JSON.parse('{"test" : 1 ,"haha" : "aa"}');
+
+  function mytest(){
+    console.log("ok");
+    $.ajax({
+      type : "post",
+      url: "http://localhost:8080/mytest/str",
+			data: data3,
+			contentType: 'application/json'
+    })
+  }
+</script>
+
+</body>
+</html>

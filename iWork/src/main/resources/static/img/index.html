@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<title>上傳excel</title>
+</head>
+
+<body>
+	<h1>上傳excel餐廳到mysql資料庫</h1>
+	<form id="myForm">
+		<input type="file" name="fileUpload" id="fileUpload">
+		<button type="submit"> 提交 </button>
+
+	</form>
+
+	<script>
+		$("#myForm").submit(function (e) {
+			e.preventDefault(); // 停止觸發submit
+			console.log("upload");
+			var formData = new FormData($("#myForm")[0]); // 使用FormData包裝form表單來傳輸資料
+			$.ajax({
+				type: "post",
+				url: "http://localhost:8080/uploadExcel",
+				data: formData,
+				cache: false, // 不需要cache
+				processData: false, // jQuery預設會把data轉為query String, 所以要停用
+				contentType: false, // jQuery預設contentType為'application/x-www-form-urlencoded; charset=UTF-8', 且不用自己設定為'multipart/form-data'
+				dataType: 'text',
+				success: function (data) {
+					console.log(data);
+				}
+			});
+		});
+
+	</script>
+
+</body>

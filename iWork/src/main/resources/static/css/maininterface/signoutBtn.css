@@ -1,0 +1,16 @@
+.signout{
+    border: 2px solid rgb(0, 149, 216);
+    transition: all 0.2s linear;
+    margin: 0;
+    user-select: none;
+    background-color: transparent;
+    position: relative;
+    padding: 7px 15px;
+    border-radius: 99rem;
+    color: #666464;
+}
+
+button:hover{
+    color: #fff;
+    background-color: #0095D8;
+}

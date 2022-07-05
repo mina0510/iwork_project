@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="/jQuery/jquery-3.6.0.js"></script>
+    <!-- style -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/shared/content6_System_style.css" />
+    <link rel="stylesheet" href="/css/shared/button.css" />
+    <link rel="stylesheet" href="/css/shared/background.css" />
+    <link rel="stylesheet" href="/css/shared/content2_style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <!-- 修改、刪除紐前面圖式 -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+    <script src="/js/apart/apart.js"></script>
+</head>
+
+
+<body class="zh-tw">
+    <div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">帳號管理</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item active" href="#">帳號權限管理</a></li>
+                    <li><a class="dropdown-item" href="./CMS_6_1_2.html">新增帳號</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">公告</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="./CMS_6_2_1.html">公告紀錄</a></li>
+                    <li><a class="dropdown-item" href="./CMS_6_2_2.html">新增公告</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="./CMS_6_3_1.html">推播</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="./CMS_6_4_1.html">出勤管理</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">點餐系統</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="./CMS_6_5_1.html">點餐紀錄</a></li>
+                    <li><a class="dropdown-item" href="./CMS_6_5_2.html">設定餐廳</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <!-- 帳號權限管理 -->
+        <div class="staffAll">
+            <br>
+            <div class="staffSearch">
+                <div>
+                    <label><b>部門：</b></label>
+                    <select id="aparts">
+                        <option value=0 class="department">所有部門</option>
+                    </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+                <div>
+                    <label><b>權限：</b></label>
+                    <select id="conditionOfAdm">
+                        <option value="all">全部</option>
+                        <option value="admin">管理者</option>
+                        <option value="user">使用者</option>
+                    </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+                <div>
+                    <label><b>姓名/員工編號：</b></label>
+                    <input id="selectName" type="search" class="inputSize"
+                        placeholder="請輸入姓名或員工編號">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+                <div>
+                    <span class="icon-input-btn">
+                        <i class="glyphicon glyphicon-search"></i>
+                        <input id="selectId" type="button" value="查詢" class="btnStyle"></input>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container">
+            <table class="table tbale-striped" text-align="center" valign="center">
+                <thead>
+                    <tr>
+                        <th width="5%" class="textcenter">編號</th>
+                        <th width="8%" class="textcenter">員工編號</th>
+                        <th width="8%" class="textcenter">姓名</th>
+                        <th width="8%" class="textcenter">部門</th>
+                        <th width="8%" class="textcenter">帳號狀態</th>
+                        <th width="8%" class="textcenter">更新日期</th>
+                        <th width="8%" class="textcenter">權限</th>
+                        <th width="8%" class="textcenter">修改</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="tableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+        <script src="/js/punch/moment.min.js"></script>
+        <script>
+            // function 日期() {
+
+            //     var currentTime = new Date();
+
+            //     dateAndTime.innerHTML = currentTime.toLocaleTimeString();
+            // }
+
+
+            // var dateAndTime = document.getElementById('日期');
+
+            // var currentTime = new Date();
+
+            // dateAndTime.innerHTML = currentTime.toLocaleTimeString();
+
+            $(document).ready(function () {
+                var conditionOfApart = $("#aparts").val();
+                var conditionOfAdm = $("#conditionOfAdm").val();
+                getAccountInfo(conditionOfApart, conditionOfAdm);
+                $("#aparts").change(() => {
+                    conditionOfApart = $("#aparts").val();
+                    getAccountInfo(conditionOfApart, conditionOfAdm)
+                })
+                $("#conditionOfAdm").change(() => {
+                    conditionOfAdm = $("#conditionOfAdm").val();
+                    getAccountInfo(conditionOfApart, conditionOfAdm)
+                });
+
+
+            });
+            var AccountInfoData;
+            function getAccountInfo(conditionOfApart, conditionOfAdm) {
+                $('#tableBody').empty();
+                var accountData = JSON.stringify({
+                    apartId: conditionOfApart,
+                    adm: conditionOfAdm
+                });
+                $.ajax({
+                    type: "post",
+                    url: "/account/getAllAccount",
+                    data: accountData,
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+                        AccountInfoData = data;
+                        for (i = 0; i < data.length; i++) {
+                            if (data[i].cellphone2 == "100") {
+                                var innerTableBody = `
+                        <tr>
+                            <td>${i + 1}</td>
+                            <td id="empId${i}" >${data[i].empId}</td>
+                            <td>${data[i].empName}</td>
+                            <td>${data[i].aparts.apart}</td>
+                            <td><input class="switch-checkbox" id="switchID${i}" onchange="changeAccountState(${i})" type="checkbox" name="switch-checkbox" checked value="${data[i].cellphone2}">
+                                <label class="switch-label" for="switchID${i}">
+                                    <span class="switch-txt" turnOn="開" turnOff="關"></span>
+                                    <span class="switch-Round-btn"></span>
+                                </label>
+                            </td>
+                            <td id="accountUpdateDade">${moment(data[i].updateDate).format("YYYY-MM-DD")}</td>
+                            <td >${data[i].adm}</td>
+                            <td><button id="reviseBtn${i + 1}" onClick="reviseAccountInfo(AccountInfoData[${i}])" style="border:none; background-color: transparent;"><img class="修改按鈕"
+                                        src="/img/pencil.png" style="width: 20px; " /></button>
+                        </tr>`;
+                                $('#tableBody').append(innerTableBody);
+
+                            }else{
+                                var innerTableBody = `
+                        <tr>
+                            <td>${i + 1}</td>
+                            <td id="empId${i}" >${data[i].empId}</td>
+                            <td>${data[i].empName}</td>
+                            <td>${data[i].aparts.apart}</td>
+                            <td><input class="switch-checkbox" id="switchID${i}" onchange="changeAccountState(${i})" type="checkbox" name="switch-checkbox" value="${data[i].cellphone2}">
+                                <label class="switch-label" for="switchID${i}">
+                                    <span class="switch-txt" turnOn="開" turnOff="關"></span>
+                                    <span class="switch-Round-btn"></span>
+                                </label>
+                            </td>
+                            <td id="accountUpdateDade">${moment(data[i].updateDate).format("YYYY-MM-DD")}</td>
+                            <td >${data[i].adm}</td>
+                            <td><button id="reviseBtn${i + 1}" onClick="reviseAccountInfo(AccountInfoData[${i}])" style="border:none; background-color: transparent;"><img class="修改按鈕"
+                                        src="/img/pencil.png" style="width: 20px; " /></button>
+                        </tr>`;
+                                $('#tableBody').append(innerTableBody);
+
+                            }
+
+                        }
+                    }
+                });
+            }
+            
+            function changeAccountState(switchId) {
+                if ($(`#switchID${switchId}`).is(':checked')) {
+                    $(`#switchID${switchId}`).val("100");
+                } else {
+                    $(`#switchID${switchId}`).val("101");
+                }
+                var data = JSON.stringify({ empId : $(`#empId${switchId}`).text(),
+                                            cellphone2 : $(`#switchID${switchId}`).val()
+                                        })
+                $.ajax({
+                    type : "post",
+                    url : "/account/changeAccountState",
+                    data : data ,
+                    contentType : "application/json"
+                });
+            }
+
+
+            function reviseAccountInfo(thisAccountInfo) {
+                window.localStorage.setItem("empId", thisAccountInfo.empId);
+                window.location.href = "./CMS_6_1_3.html";
+            }
+
+            $("#selectId").click(function () {
+                $("#aparts").val("0");
+                $("#conditionOfAdm").val("all");
+
+                if ($("#selectName").val() == "") {
+                    var conditionOfApart = $("#aparts").val();
+                    var conditionOfAdm = $("#conditionOfAdm").val();
+                    getAccountInfo(conditionOfApart, conditionOfAdm);
+                } else {
+                    var selectName = JSON.stringify({
+                        empName: $("#selectName").val()
+                    });
+
+                    $.ajax({
+                        type: "post",
+                        url: "/account/selectByEmpName",
+                        data: selectName,
+                        contentType: "application/json",
+                        datatype: 'json',
+                        success: function (data) {
+                            if (data.info == "noExist") {
+                                alert("該資料不存在");
+                            } else {
+                                $('#tableBody').empty();
+                                console.log(data);
+                                for (i = 0; i < data.length; i++) {
+                                    var innerTableBody = `
+                                            <tr>
+                                             <td>${i + 1}</td>
+                                             <td>${data[i].info.empId}</td>
+                                             <td>${data[i].info.empName}</td>
+                                             <td>${data[i].info.aparts.apart}</td>
+                                             <td><input class="switch-checkbox" id="switchID${i}" type="checkbox" name="switch-checkbox">
+                                                 <label class="switch-label" for="switchID${i}">
+                                                     <span class="switch-txt" turnOn="開" turnOff="關"></span>
+                                                     <span class="switch-Round-btn"></span>
+                                                 </label>
+                                             </td>
+                                             <td id="accountUpdateDade">${moment(data[i].info.updateDate).format("YYYY-MM-DD")}</td>
+                                             <td >${data[i].info.adm}</td>
+                                             <td><button id="reviseBtn${i + 1}" onClick="reviseAccountInfo(AccountInfoData[${i}])" style="border:none; background-color: transparent;"><img class="修改按鈕"
+                                                         src="/img/pencil.png" style="width: 20px; " /></button>
+                                             </tr>`;
+                                    $('#tableBody').append(innerTableBody);
+                                }
+                            }
+                        }
+
+                    });
+
+                }
+
+            });
+
+        </script>
+
+
+
+
+
+    </div>
+
+</body>
+
+</html>

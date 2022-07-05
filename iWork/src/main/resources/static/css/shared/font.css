@@ -1,0 +1,13 @@
+@import url('https://pro.fontawesome.com/releases/v5.10.0/css/all.css');
+
+* {
+	font-family: 'Noto Sans TC', sans-serif;
+}
+html {
+	height: 100%;
+}
+
+body{
+	background-color:white;
+}
+

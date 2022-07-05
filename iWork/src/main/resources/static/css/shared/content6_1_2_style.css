@@ -1,0 +1,28 @@
+@import url('https://pro.fontawesome.com/releases/v5.10.0/css/all.css');
+
+* {
+	font-family: 'Noto Sans TC', sans-serif;
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+.container-fluid {
+    padding-top: 1cm;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.區域邊框 {
+    margin-top: 1cm;
+    margin-bottom: 1cm;
+}
+
+table td {
+    width: 140px;
+    height: 30px;
+}

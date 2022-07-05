@@ -1,0 +1,19 @@
+@import url('https://pro.fontawesome.com/releases/v5.10.0/css/all.css');
+
+* {
+	font-family: 'Noto Sans TC', sans-serif;
+}
+html {
+	height: 100%;
+}
+
+body {
+	/* background-image: url(../img/bubble.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover; */
+	background: linear-gradient(white, #D5EFFA);
+	/* fixed模式，不管外面、裡面怎麼滾，他都是不會動的。 */
+	background-attachment: fixed;
+}

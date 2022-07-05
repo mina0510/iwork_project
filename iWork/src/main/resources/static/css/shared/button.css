@@ -1,0 +1,108 @@
+.inputSize{
+    height: 20px;
+    width: 190px;
+    border: 1px rgb(98, 98, 98) solid;
+}
+@import url('https://pro.fontawesome.com/releases/v5.10.0/css/all.css');
+
+/* -------------------------------我是分隔線------------------------------- */
+
+/* btnStyle */
+.btnStyle {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 4px 16px;
+    border: 1px solid #e1edb6;
+    border-radius: 8px;
+    background: #f0fdc2;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f0fdc2), to(#cdd6ab));
+    background: -moz-linear-gradient(top, #f0fdc2, #cdd6ab);
+    background: linear-gradient(to bottom, #f0fdc2, #cdd6ab);
+    -webkit-box-shadow: #ffffe9 0px 0px 40px 0px;
+    -moz-box-shadow: #ffffe9 0px 0px 40px 0px;
+    box-shadow: #ffffe9 0px 0px 40px 0px;
+    text-shadow: #fffffc 1px 1px 7px;
+    font: normal normal bold 14px arial;
+    color: #111111;
+    text-decoration: none;
+}
+.btnStyle:hover,
+.btnStyle:focus {
+    background: #ffffe9;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffe9), to(#f6ffcd));
+    background: -moz-linear-gradient(top, #ffffe9, #f6ffcd);
+    background: linear-gradient(to bottom, #ffffe9, #f6ffcd);
+    color: #111111;
+    text-decoration: none;
+}
+.btnStyle:active {
+    background: #a8b188;
+    background: -webkit-gradient(linear, left top, left bottom, from(#a8b188), to(#cdd6ab));
+    background: -moz-linear-gradient(top, #a8b188, #cdd6ab);
+    background: linear-gradient(to bottom, #a8b188, #cdd6ab);
+}
+
+/* -------------------------------我是分隔線------------------------------- */
+
+/* function */
+.function {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 1px 12px;
+    border: 1px solid #9edaae;
+    border-radius: 8px;
+    background: #62d588;
+    background: -webkit-gradient(linear, left top, left bottom, from(#56be79), to(#b7ebc6));
+    background: -moz-linear-gradient(top, #6cec97, #b7ebc6);
+    background: linear-gradient(to bottom, #6cec97, #b7ebc6);
+    -webkit-box-shadow: #72f3a1 0px 0px 4px 0px;
+    -moz-box-shadow: #72f3a1 0px 0px 4px 0px;
+    box-shadow: #72f3a1 0px 0px 4px 0px;
+    text-shadow: #327d47 1px 1px 7px;
+    font: normal normal bold 14px arial;
+    color: #ffffff;
+    text-decoration: none;
+}
+.function:hover,
+.function:focus {
+    background: #83f0b8;
+    background: -webkit-gradient(linear, left top, left bottom, from(#8affc2), to(#dcffee));
+    background: -moz-linear-gradient(top, #8affc2, #dcffee);
+    background: linear-gradient(to bottom, #8affc2, #dcffee);
+    color: #ffffff;
+    text-decoration: none;
+}
+.function:active {
+    background: #46ae63;
+    background: -webkit-gradient(linear, left top, left bottom, from(#46ae63), to(#b7ebc6));
+    background: -moz-linear-gradient(top, #46ae63, #b7ebc6);
+    background: linear-gradient(to bottom, #46ae63, #b7ebc6);
+}
+
+/* -------------------------------我是分隔線------------------------------- */
+
+/* edit delete 前面小圖示 */
+.icon-input-btn {
+    display: inline-block;
+    position: relative;
+}
+
+.icon-input-btn input[type="button"] {
+    padding-left: 2em;
+}
+
+.icon-input-btn .glyphicon {
+    display: inline-block;
+    position: absolute;
+    left: 0.65em;
+    top: 30%;
+}
+
+/* -------------------------------我是分隔線------------------------------- */
+
+.sendimgbtn{
+    background-color: transparent;  
+    display: inline-block;
+}

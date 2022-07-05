@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="/jQuery/jquery-3.6.0.js"></script>
+<!-- style -->
+<link rel="stylesheet" href="/css/shared/button.css" />
+<link rel="stylesheet" href="/css/shared/background.css" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+	crossorigin="anonymous">
+
+<style>
+/* 薪資查詢區塊 */
+.payform {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* 輸入框大小 */
+.yymminput {
+	width: 250px;
+}
+
+.emailinput {
+	width: 350px;
+}
+
+/* 按鈕 */
+.btndiv {
+	width: 400px;
+	text-align: center;
+}
+</style>
+
+
+</head>
+
+
+<body class="zh-tw">
+	<div class="payform">
+		<form action="">
+			<div>
+				<h5>
+					<label for="">月&nbsp&nbsp&nbsp&nbsp份：</label>&nbsp;&nbsp; <input
+						class="yymminput" type="month" placeholder="西元年">
+				</h5>
+			</div>
+			<br>
+			<br>
+			<div>
+				<h5>
+					<label for="">E-Mail：</label>&nbsp;&nbsp; <input class="emailinput"
+						type="email" placeholder="請輸入email">
+				</h5>
+			</div>
+			<br>
+			<br>
+			<div>
+				<div class="btndiv">
+					<button class="btnStyle" id="btnstyle"
+						style="width: 70px; height: 30px;">確認</button>
+					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+					<button class="btnStyle" style="width: 70px; height: 30px;">重填</button>
+				</div>
+			</div>
+			<br>
+			<br>
+			<br>
+			<div>
+				<h6>※如對以上薪資有相關疑問，請詢問人事或部門主管，並於『當月』提出。</h6>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript">
+		function getCookie() {
+		    var cookie = document.cookie.split('=');
+		    return cookie[1].toString();
+		 }
+	
+	$('#btnstyle').on('click', function (){
+	 	
+		var month = $('.yymminput').val();
+		console.log(month);
+		var email = $('.emailinput').val();
+		console.log(email);
+        
+		var data = JSON.stringify({ 
+            'Token':getCookie(),
+            'month':month,
+            'Email':email
+        });
+		
+		
+		$.ajax({
+	 		type : "post",
+	 		url　: "/testPdf",
+	 		data : data,
+	 		contentType : 'application/json',
+	 	});
+	} 	
+	)
+</script>
+
+
+
+
+</body>
+
+</html>

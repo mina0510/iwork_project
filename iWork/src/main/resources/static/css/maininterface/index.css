@@ -1,0 +1,358 @@
+@import url('https://pro.fontawesome.com/releases/v5.10.0/css/all.css');
+
+* {
+	font-family: 'Noto Sans TC', sans-serif;
+}
+
+/* <!-- 背景泡泡 --> */
+  html {
+      height: 100%;
+  }
+
+  body {
+      background: linear-gradient(white, #78d7ff);
+      overflow: hidden;
+      z-index: 1;
+  }
+
+  .bubble {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /*z-index defult value=1*/
+      z-index: -1;
+      /*upgrade gpu rendering*/
+      transform: translateZ(0);
+  }
+
+  .bubble li {
+      position: absolute;
+      list-style: none;
+      display: block;
+      background: rgba(255, 255, 255, 0.2);
+      /*make bubble on page bottom*/
+      bottom: -100px;
+      animation: bubble-ani 20s linear infinite;
+      border-radius: 100%;
+  }
+
+  /* glow of the bubbles*/
+  .bubble li:before {
+      position: absolute;
+      left: 20%;
+      top: 21%;
+      width: 25%;
+      content: '';
+      background: rgba(255, 255, 255, 0.2);
+      display: block;
+      height: 25%;
+      border-radius: 100%;
+  }
+
+  .bubble li:nth-child(1) {
+      width: 20px;
+      height: 20px;
+      left: 15%;
+  }
+
+  .bubble li:nth-child(2) {
+      width: 40px;
+      height: 40px;
+      left: 40%;
+      animation-duration: 11s;
+      animation-delay: 2s;
+  }
+
+  .bubble li:nth-child(3) {
+      width: 25px;
+      height: 25px;
+      left: 30%;
+      animation-duration: 18s;
+      animation-delay: 3.5s;
+  }
+
+  .bubble li:nth-child(4) {
+      width: 60px;
+      height: 60px;
+      left: 55%;
+      animation-duration: 23s;
+      animation-delay: 1.5s;
+  }
+
+  .bubble li:nth-child(5) {
+      width: 20px;
+      height: 20px;
+      left: 35%;
+      animation-duration: 14s;
+      animation-delay: 1s;
+  }
+
+  .bubble li:nth-child(6) {
+      width: 50px;
+      height: 50px;
+      left: 10%;
+      animation-duration: 8s;
+      animation-delay: 2s;
+  }
+
+  .bubble li:nth-child(7) {
+      width: 23px;
+      height: 23px;
+      left: 50%;
+      animation-duration: 10s;
+      animation-delay: 3.5s;
+  }
+
+  .bubble li:nth-child(8) {
+      width: 15px;
+      height: 15px;
+      left: 90%;
+      animation-duration: 10s;
+      animation-delay: 4s;
+  }
+
+  .bubble li:nth-child(9) {
+      width: 40px;
+      height: 40px;
+      left: 70%;
+      animation-duration: 11s;
+      animation-delay: 5s;
+  }
+
+  .bubble li:nth-child(10) {
+      width: 33px;
+      height: 33px;
+      left: 95%;
+      animation-duration: 7s;
+      animation-delay: 8s;
+  }
+
+  .bubble li:nth-child(11) {
+      width: 60px;
+      height: 60px;
+      left: 35%;
+      animation-duration: 14s;
+      animation-delay: 6s;
+  }
+
+  .bubble li:nth-child(12) {
+      width: 50px;
+      height: 50px;
+      left: 68%;
+      animation-duration: 16s;
+      animation-delay: 4s;
+  }
+
+  .bubble li:nth-child(13) {
+      width: 18px;
+      height: 18px;
+      left: 18%;
+      animation-duration: 13s;
+      animation-delay: 2s;
+  }
+
+  .bubble li:nth-child(14) {
+      width: 38px;
+      height: 38px;
+      left: 70%;
+      animation-duration: 8s;
+      animation-delay: 1s;
+  }
+
+  .bubble li:nth-child(15) {
+      width: 27px;
+      height: 27px;
+      left: 54%;
+      animation-duration: 9s;
+      animation-delay: 3s;
+  }
+
+  .bubble li:nth-child(16) {
+      width: 17px;
+      height: 17px;
+      left: 88%;
+      animation-duration: 16s;
+      animation-delay: 6s;
+  }
+
+  .bubble li:nth-child(17) {
+      width: 37px;
+      height: 37px;
+      left: 46%;
+      animation-duration: 14s;
+      animation-delay: 8s;
+  }
+
+  .bubble li:nth-child(18) {
+      width: 45px;
+      height: 45px;
+      left: 92%;
+      animation-duration: 11s;
+      animation-delay: 4s;
+  }
+
+  .bubble li:nth-child(19) {
+      width: 60px;
+      height: 60px;
+      left: 83%;
+      animation-duration: 12s;
+      animation-delay: 5s;
+  }
+
+  .bubble li:nth-child(20) {
+      width: 15px;
+      height: 15px;
+      left: 33%;
+      animation-duration: 10s;
+      animation-delay: 4s;
+  }
+
+  .bubble li:nth-child(21) {
+      width: 50px;
+      height: 50px;
+      left: 13%;
+      animation-duration: 10s;
+      animation-delay: 1s;
+  }
+
+  .bubble li:nth-child(20) {
+      width: 30px;
+      height: 30px;
+      left: 8%;
+      animation-duration: 11s;
+      animation-delay: 2s;
+  }
+
+  .bubble li:nth-child(20) {
+      width: 20px;
+      height: 20px;
+      left: 5%;
+      animation-duration: 9s;
+      animation-delay: 3s;
+  }
+
+  .bubble li:nth-child(20) {
+      width: 11px;
+      height: 11px;
+      left: 11%;
+      animation-duration: 15s;
+      animation-delay: 1s;
+  }
+
+  .bubble li:nth-child(20) {
+      width: 40px;
+      height: 40px;
+      left: 9%;
+      animation-duration: 9s;
+      animation-delay: 0s;
+  }
+
+  @keyframes bubble-ani {
+      0% {
+          -webkit-transform: translateY(0);
+          transform: translateY(0);
+      }
+
+      100% {
+          -webkit-transform: translateY(-1080px);
+          transform: translateY(-1080px);
+      }
+  }
+
+
+
+  /* -------我是分隔線----------- */
+
+  #titleImg{
+      margin-top: 30px;
+      margin-bottom: 50px;
+      width: 100%;
+      height:200px;
+      background-image: url("/img/loginPage/indexTitle.jpg");
+      background-size:cover;
+      padding-left: 500px;
+      padding-top: 60px;
+
+  }
+  #titleText{
+      font-size: 70px;
+      color:#3f778f;
+      text-shadow: rgba(79, 109, 136, 0.407) 5px 5px 5px;
+  }
+
+  #login {
+      padding: 20px;
+      width: 350px;
+      height: 260px;
+      background-color: rgba(235, 229, 209);
+      background-image: url("/img/loginPage/indexTitle.jpg");
+      background-size:cover;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: rgba(79, 109, 136, 0.407) 5px 5px 5px;
+  }
+
+  .label_input {
+      font-size: 12px;
+      width: 65px;
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      color: white;
+      background-color: hsla(0, 100%, 42%, 0.779);
+  }
+
+  .text_field {
+      width: 100px;
+      height: 20px;
+      text-align: left;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      border: 0;
+  }
+
+  #btn_login {
+      font-size: 14px;
+      width: 110px;
+      height: 40px;
+      line-height: 20px;
+      text-align: center;
+      color: white;
+      background-color: #98c0ca;
+      border-radius: 30px;
+      float: left;
+  }
+
+  #forget_pwd {
+      font-size: 12px;
+      color: blue;
+      text-decoration: none;
+      position: relative;
+      float: right;
+      top: 5px;
+  }
+
+  #forget_pwd:hover {
+      color: blue;
+      text-decoration: underline;
+  }
+
+  #login_control {
+      padding: 0 28px;
+  }
+
+  .textDiv{
+    height: 250px;
+    background-color: rgba(251, 251, 251, 0.37);
+    width: 90%;
+    word-wrap: break-word;
+    overflow-y: auto;
+  }
+
+  .logoClass{
+    width: 210px;
+    position: absolute; 
+    top: 33px;
+  }

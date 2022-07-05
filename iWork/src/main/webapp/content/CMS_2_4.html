@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<script src="/jQuery/jquery-3.6.0.js"></script>
+	<!-- style -->
+	<link rel="stylesheet" href="/css/shared/button.css" />
+	<link rel="stylesheet" href="/css/shared/background.css" />
+	<link rel="stylesheet" href="/css/shared/content2_style.css" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+		crossorigin="anonymous"></script>
+	<!-- 修改、刪除紐前面圖式 -->
+	<link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+	<script src="/js/CMS2attendance/leaves.js"></script>
+	<script src="/js/CMS2attendance/admin.js"></script>
+
+</head>
+
+
+<body class="zh-tw">
+	<div>
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a class="nav-link" aria-current="page" href="./CMS_2Leaverecorded.html">出勤/請假紀錄</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" aria-current="page" href="./CMS_2_2.html">申請表單</a>
+			</li>
+			<li class="nav-item" id="disabled" style="visibility: hidden;">
+				<a class="nav-link" aria-current="page" href="./CMS_2_3.html">審核</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="#">修改表單</a>
+			</li>
+		</ul>
+	</div>
+
+
+	<!-- 修改表單 -->
+	<div class="staffAll">
+		<br>
+		<div class="application">
+			<div>
+				<label><b>類&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;別：</b></label>&nbsp;&nbsp;&nbsp;
+				<select id="leaves" value="">
+					<option value="" class="vacation"></option>
+				</select>
+			</div>
+			<br>
+			<div>
+				<label><b>事&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由：</b></label><br>
+				<textarea id="contentTextEdit" cols="50" rows="3"></textarea>
+			</div>
+			<br>
+			<div>
+				<label><b>起&nbsp;&nbsp;始&nbsp;&nbsp;時&nbsp;&nbsp;間：</b></label>&nbsp;&nbsp;&nbsp;
+				<input type="datetime-local" class="inputSize" id="startDatesEdit">
+			</div>
+			<br>
+			<div>
+				<label><b>結&nbsp;&nbsp;束&nbsp;&nbsp;時&nbsp;&nbsp;間：</b></label>&nbsp;&nbsp;&nbsp;
+				<input type="datetime-local" class="inputSize" id="endDatesEdit">
+			</div>
+			<br>
+			<div>
+				<label><b>時&nbsp;&nbsp;數&nbsp;&nbsp;輸&nbsp;&nbsp;入：</b></label>&nbsp;&nbsp;&nbsp;
+				<input type="text" class="inputSize" id="hoursEdit"
+					onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+					onkeyup="value=value.replace(/[^\d.]/g,'')">
+			</div>
+			<br>
+			<div>
+				<input type="button" value="確定" class="btnStyle"
+					onclick="changeAnnouncement()"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="button" value="取消" class="btnStyle" id="cancelbtn"></input>
+			</div>
+		</div>
+	</div>
+	<script>
+		$("#cancelbtn").on("click", function () {
+			var yes = confirm("你確定取消嗎?");
+			if (yes) {
+				window.location.href = './CMS_2Leaverecorded.html';
+			} else {
+				console.log("取消")
+			}
+		})
+	</script>
+
+	<script>
+		var findattId = JSON.stringify({
+			attendanceId: window.localStorage.getItem("attend")
+		});
+
+		// console.log(window.localStorage.getItem("attend"));
+		$(function () {
+			$.ajax({
+				url: "http://localhost:8080/Attendance/updateview",
+				type: "POST",
+				data: findattId,
+				contentType: "application/json",
+				success: function (data) {
+					console.log(data);
+					$("#leaves").val(data.leaveId);
+					$("#contentTextEdit").val(data.ContentText);
+					$("#startDatesEdit").val(data.startDate.split(" ")[0] + "T" + data.startDate.split(" ")[1]);
+					$("#endDatesEdit").val(data.endDate.split(" ")[0] + "T" + data.endDate.split(" ")[1]);
+					$("#hoursEdit").val(data.hours);
+				}
+			})
+		})
+
+		// 修改之後的確定
+
+		function changeAnnouncement() {
+			// console.log("OK")
+			let evestart = moment($('#startDates').val()).format('YYYY-MM-DD HH:mm:ss');
+			let eveend = moment($('#endDates').val()).format('YYYY-MM-DD HH:mm:ss');
+			var enterBtn = JSON.stringify([{
+				"userToken": getCookie(),
+				"attendanceId": window.localStorage.getItem("attend"),
+				"leaveId": $("#leaves").find("option:selected").val(),
+				"contentText": $("#contentTextEdit").val(),
+				"startDate": evestart,
+				"endDate": eveend,
+				"hours": $("#hoursEdit").val(),
+				"approvalId": "1",
+			}]);
+
+			console.log(enterBtn);
+			$(function () {
+				$.ajax({
+					url: "http://localhost:8080/Attendance/update",
+					type: "PUT",
+					data: enterBtn,
+					contentType: "application/json",
+					success: function (data) {
+						console.log(data);
+						if (confirm("修改成功")) {
+							window.location.href = "./CMS_2Leaverecorded.html"
+						}
+					}
+				})
+			})
+
+		}
+
+
+	</script>
+
+
+
+	<script src="/js/punch/moment.min.js"></script>
+	<script src="/js/CMS2attendance/attendance.js"></script>
+</body>
+
+</html>

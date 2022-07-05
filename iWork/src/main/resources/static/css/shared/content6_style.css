@@ -1,0 +1,47 @@
+/* -----------------CMS_6System----------------- */
+
+
+/* -----------------CMS_6_2_1----------------- */
+
+
+/* -----------------CMS_6_3_1----------------- */
+
+/* 6_3_1,6_3_2,6_3_3 */
+.staffAll {
+    position: relative;
+}
+
+.staffDiv {
+    width: 100%;
+    border-collapse: collapse;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.levelTable {
+    width: 70%;
+    word-wrap: break-word;
+    /*自動斷行*/
+    table-layout: fixed;
+}
+
+
+.tableStyle {
+    border: 1px solid black;
+    text-align: center;
+    height: 30px;
+}
+
+/* -----------------CMS_6_3_2----------------- */
+/* 申請表單 */
+/* 6_3_2,6_3_3 */
+.application {
+    position: absolute;
+    left: 35%;
+}
+
+/* -----------------CMS_6_3_3----------------- */
+
+
+/* -----------------CMS_6_4_1----------------- */

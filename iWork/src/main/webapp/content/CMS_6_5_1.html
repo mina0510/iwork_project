@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- style -->
+    <link rel="stylesheet" href="/css/shared/content6_5_style.css" />
+    <link rel="stylesheet" href="/css/shared/button.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+    <!-- 修改、刪除紐前面圖式 -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+
+</head>
+
+
+<body class="zh-tw">
+    <div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">帳號管理</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="./CMS_6System.html">帳號權限管理</a></li>
+                    <li><a class="dropdown-item" href="./CMS_6_1_2.html">新增帳號</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">公告</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="./CMS_6_2_1.html">公告紀錄</a></li>
+                    <li><a class="dropdown-item" href="./CMS_6_2_2.html">新增公告</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="./CMS_6_3_1.html">推播</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="./CMS_6_4_1.html">出勤管理</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">點餐系統</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item active" href="#">點餐紀錄</a></li>
+                    <li><a class="dropdown-item" href="./CMS_6_5_2.html">設定餐廳</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <!-- 點餐紀錄編輯區 -->
+        <br>
+        <div class="orderSearch">
+            <label for=""><b>日期：</b></label>&nbsp;&nbsp;
+            <input type="date" class="inputSize"
+                id="orderDate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="icon-input-btn">
+                <i class="glyphicon glyphicon-search"></i>
+                <input id="selectByDate" class="function" type="button" value="查詢">
+            </span>
+        </div>
+        <br>
+        <div>
+
+            <div class="orderleftDiv">
+                <div>
+                    <table class="orderTable" style="background-color:rgba(173, 173, 173, 0.756);">
+                        <tr>
+                            <th class="ordertableStyle" colspan="7">員工訂餐明細</th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="middlerDiv">
+                    <table class="orderTable" id="ordersTable">
+                        <tr id="firstTr">
+                            <th class="ordertableStyle" width="6%">NO.</th>
+                            <th class="ordertableStyle" width="10%">員工</th>
+                            <th class="ordertableStyle" width="18%">日期</th>
+                            <th class="ordertableStyle" width="25%">品項</th>
+                            <th class="ordertableStyle" width="15%">單價</th>
+                            <th class="ordertableStyle" width="6%">數量</th>
+                            <th class="ordertableStyle" width="10%">備註</th>
+                            <th class="ordertableStyle" width="10%">小計</th>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <th id="empAllCount">總計金額：&nbsp;&nbsp;</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+
+            <div class="orderrightDiv">
+                <div>
+                    <table class="orderTable" style="background-color:rgba(173, 173, 173, 0.756);">
+                        <tr>
+                            <th class="ordertableStyle" colspan="7">品項總明細</th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="middlerDiv">
+                    <table class="orderTable" id="itemsTable">
+                        <tr>
+                            <th class="ordertableStyle" width="6%">NO.</th>
+                            <th class="ordertableStyle" width="15%">餐廳</th>
+                            <th class="ordertableStyle" width="25%">品項</th>
+                            <th class="ordertableStyle" width="6%">數量</th>
+                            <th class="ordertableStyle" width="25%">備註</th>
+                            <th class="ordertableStyle" width="15%">小計</th>
+                        </tr>
+                    </table>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <th id="itemsAllCount">總計金額：&nbsp;&nbsp;</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+    <script src="/jQuery/jquery-3.6.0.js"></script>
+    <script src="/js/punch/moment.min.js"></script>
+    <script src="/js/CMS_6_5order/CMS_6_5_1.js"></script>
+    <script>
+        $("#selectByDate").click(function(){
+            var inputDate = $("#orderDate").val();
+            var selectDate = new Date(inputDate);
+            findAllOrdersByDate(selectDate);
+            findAllItemsbyDate(selectDate);
+
+        });
+
+        $(document).ready(function () {
+            var date = new Date();
+            findAllOrdersByDate(date);
+            findAllItemsbyDate(date);
+            
+        });
+
+        function findAllOrdersByDate(date) {
+            var param = 0;
+            if (date.getHours() <= 13) {
+                param = JSON.stringify({
+                    "startDate": moment(date).add(-1, 'days').format("YYYY-MM-DD 12:00:00"),
+                    "endDate": moment(date).format("YYYY-MM-DD 12:00:00"),
+                });
+            } else {
+                param = JSON.stringify({
+                    "startDate": moment(date).format("YYYY-MM-DD 12:00:00"),
+                    "endDate": moment(date).add(1, 'days').format("YYYY-MM-DD 12:00:00"),
+                });
+            }
+
+            $.ajax({
+                type: "post",
+                url: "/orderSys/getAllOrdersByDate",
+                data: param,
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (data) {
+                    var ordersTable = document.getElementById("ordersTable");
+                    var firstTr = document.createElement("tr");
+                    firstTr.innerHTML = `<tr id="firstTr">
+                            <th class="ordertableStyle" width="6%">NO.</th>
+                            <th class="ordertableStyle" width="10%">員工</th>
+                            <th class="ordertableStyle" width="18%">日期</th>
+                            <th class="ordertableStyle" width="25%">品項</th>
+                            <th class="ordertableStyle" width="15%">單價</th>
+                            <th class="ordertableStyle" width="6%">數量</th>
+                            <th class="ordertableStyle" width="10%">備註</th>
+                            <th class="ordertableStyle" width="10%">小計</th>
+                        </tr>`;
+                    var year = (moment(date).format("YYYY"));
+                    var mon = (moment(date).format("MM"));
+                    var day = (moment(date).format("DD"));
+                    var allCount = 0;
+                    $('#ordersTable').empty();
+                    $("#empAllCount").text(`總計金額：`);
+                    ordersTable.append(firstTr);
+                    for (var i = 0; i < data.length; i++) {
+                        orderTr = document.createElement("tr");
+                        orderTr.innerHTML = `   <td class="ordertableStyle">${i + 1}</td>
+                                        <td class="ordertableStyle">${data[i].empName}</td>
+                                        <td class="ordertableStyle">${year + "年" + mon + "月" + day + "日"}</td>
+                                        <td class="ordertableStyle">${data[i].dishItem}</td>
+                                        <td class="ordertableStyle"> ${data[i].dishPrice}</td>
+                                        <td class="ordertableStyle"> ${data[i].qty}</td>
+                                        <td class="ordertableStyle">無</td>
+                                        <td class="ordertableStyle">${data[i].dishPrice * data[i].qty}</td>`;
+                        ordersTable.append(orderTr);
+                        allCount += data[i].dishPrice * data[i].qty;
+                    }
+                    $("#empAllCount").text(`總計金額：${allCount}`);
+                }
+            });
+
+        }
+
+        function findAllItemsbyDate(date) {
+            var param = 0;
+            if (date.getHours() <= 13) {
+                param = JSON.stringify({
+                    "startDate": moment(date).add(-1, 'days').format("YYYY-MM-DD 12:00:00"),
+                    "endDate": moment(date).format("YYYY-MM-DD 12:00:00"),
+                    "date": moment(date).format("YYYY-MM-DD")
+                });
+            } else {
+                param = JSON.stringify({
+                    "startDate": moment(date).format("YYYY-MM-DD 12:00:00"),
+                    "endDate": moment(date).add(1, 'days').format("YYYY-MM-DD 12:00:00"),
+                    "date": moment(date).add(1, 'days').format("YYYY-MM-DD")
+                });
+            }
+            $('#itemsTable').empty();
+            $.ajax({
+                type: "post",
+                url: "/orderSys/getAllOrdersByDateOrderByItem",
+                data: param,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (data) {
+                    var itemsTable = document.getElementById("itemsTable");
+                    var firstTr = document.createElement("tr");
+                    firstTr.innerHTML = `<tr>
+                            <th class="ordertableStyle" width="6%">NO.</th>
+                            <th class="ordertableStyle" width="15%">餐廳</th>
+                            <th class="ordertableStyle" width="25%">品項</th>
+                            <th class="ordertableStyle" width="15%">單價</th>
+                            <th class="ordertableStyle" width="6%">數量</th>
+                            <th class="ordertableStyle" width="10%">備註</th>
+                            <th class="ordertableStyle" width="15%">小計</th>
+                        </tr>`;
+                    var allCount = 0;
+                    $('#itemsTable').empty();
+                    $("#itemsAllCount").text(`總計金額：`);
+                    itemsTable.append(firstTr);
+                    for (var i = 1; i < data.length; i++) {
+                        itemsTr = document.createElement("tr");
+                        itemsTr.innerHTML = `<td class="ordertableStyle">${i}</td>
+                                        <td class="ordertableStyle">${data[0].restaurantName}</td>
+                                        <td class="ordertableStyle">${data[i].dishItem}</td>
+                                        <td class="ordertableStyle"> ${data[i].dishPrice}</td>
+                                        <td class="ordertableStyle"> ${data[i].qty}</td>
+                                        <td class="ordertableStyle">無</td>
+                                        <td class="ordertableStyle">${data[i].dishPrice * data[i].qty}</td>`;
+                        itemsTable.append(itemsTr);
+                        allCount += data[i].dishPrice * data[i].qty;
+                    }
+                    $("#itemsAllCount").text(`總計金額：${allCount}`);
+                }
+
+            });
+        }
+    </script>
+</body>
+
+</html>

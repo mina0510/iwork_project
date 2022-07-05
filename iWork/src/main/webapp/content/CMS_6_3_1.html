@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<script src="/jQuery/jquery-3.6.0.js"></script>
+	<!-- style -->
+	<link rel="stylesheet" href="/css/shared/button.css" />
+	<link rel="stylesheet" href="/css/shared/background.css" />
+	<link rel="stylesheet" href="/css/shared/content6_style.css" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+	<!-- 修改、刪除紐前面圖式 -->
+	<link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+		crossorigin="anonymous"></script>
+
+</head>
+
+
+<body class="zh-tw">
+	<div>
+		<ul class="nav nav-tabs">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+					aria-expanded="false">帳號管理</a>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="./CMS_6System.html">帳號權限管理</a></li>
+					<li><a class="dropdown-item" href="./CMS_6_1_2.html">新增帳號</a></li>
+				</ul>
+			</li>
+			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+					role="button" aria-expanded="false">公告</a>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="./CMS_6_2_1.html">公告紀錄</a></li>
+					<li><a class="dropdown-item" href="./CMS_6_2_2.html">新增公告</a></li>
+				</ul>
+			</li>
+			<li class="nav-item"><a class="nav-link active " aria-current="page" href="./broadcast.html">推播</a></li>
+			
+			<li class="nav-item">
+                <a class="nav-link " aria-current="page" href="./CMS_6_4_1.html">出勤管理</a>
+            </li>
+			<li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">點餐系統</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="./CMS_6_5_1.html">點餐紀錄</a></li>
+                    <li><a class="dropdown-item" href="./CMS_6_5_2.html">設定餐廳</a></li>
+                </ul>
+            </li>
+		</ul>
+	</div>
+	<!-- 推播 -->
+	<div class="staffAll">
+		<br>
+		<div class="application">
+			<div>
+				<label for=""><b>訊&nbsp;&nbsp;&nbsp;&nbsp;息：</b></label><br>
+				<textarea id="pushText" cols="45" rows="10"></textarea>
+			</div>
+			<br>
+			<div>
+				<button class="btnStyle" id="btn_send">確定</button>
+				&nbsp;&nbsp;
+				<button class="btnStyle" id="cleanString">清除</button>
+			</div>
+		</div>
+	</div>
+	<!-- <div >
+		<input type="text" id="systemtext"  />
+		<button id="btn_send">傳送</button>
+	</div> -->
+	<script>
+        $("#btn_send").click(function(){
+           sendout();           
+        });
+
+		function sendout() {
+			var inputData = JSON.stringify({
+				from:"system",
+				text: $("#pushText").val()
+			});
+
+			$.ajax({
+				type: "post",
+				url: "/system/broadcast",
+				data: inputData,
+				contentType: 'application/json',
+				success: function (data) {
+					console.log(data); 
+				}
+			});
+		}
+	</script>
+
+	<script>
+		$("#cleanString").on("click", function () {
+			var yes = confirm("你確定要全部清除嗎?");
+			if (yes) {
+				document.getElementById("pushText").value = "";//清空input
+				document.getElementById("pushText").innerHTML = "";//清空畫面文字
+			} else {
+				console.log("清除")
+			}
+		})
+	</script>
+</body>
+
+</html>
